@@ -4,42 +4,14 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>build single zookeeper node and 3 kafka broker use wurstmeister/kafka | Hexo</title>
+  <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="compose to run all CONTAINER
-edit /etc/hosts add zkserver1 to hosts in all zookeeper node,
-$sudo vi /etc/hosts
-192.168.1.215   zkserver1
-$sudo docker-compose up
-or
-$sudo docker-compose up -d
-
-scale ka">
-<meta property="og:type" content="article">
-<meta property="og:title" content="build single zookeeper node and 3 kafka broker use wurstmeister/kafka">
-<meta property="og:url" content="https://pyxixi2012.github.io/2016/07/22/install_kafka_python_docker/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://pyxixi2012.github.io/page/2/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="compose to run all CONTAINER
-edit /etc/hosts add zkserver1 to hosts in all zookeeper node,
-$sudo vi /etc/hosts
-192.168.1.215   zkserver1
-$sudo docker-compose up
-or
-$sudo docker-compose up -d
-
-scale ka">
-<meta property="og:updated_time" content="2016-07-23T02:33:43.382Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="build single zookeeper node and 3 kafka broker use wurstmeister/kafka">
-<meta name="twitter:description" content="compose to run all CONTAINER
-edit /etc/hosts add zkserver1 to hosts in all zookeeper node,
-$sudo vi /etc/hosts
-192.168.1.215   zkserver1
-$sudo docker-compose up
-or
-$sudo docker-compose up -d
-
-scale ka">
+<meta name="twitter:title" content="Hexo">
   
     <link rel="alternative" href="[object Object]" title="Hexo" type="application/atom+xml">
   
@@ -227,10 +199,12 @@ scale ka">
 	</div>
 </nav>
 
-      <div class="body-wrap"><article id="post-install_kafka_python_docker" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap">
+  
+    <article id="post-install-flume-with-docker" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2016/07/22/install_kafka_python_docker/" class="article-date">
+      <a href="/2016/07/22/install-flume-with-docker/" class="article-date">
   	<time datetime="2016-07-22T06:48:00.000Z" itemprop="datePublished">2016-07-22</time>
 </a>
     </div>
@@ -241,83 +215,73 @@ scale ka">
       <header class="article-header">
         
   
-    <h1 class="article-title" itemprop="name">
-      build single zookeeper node and 3 kafka broker use wurstmeister/kafka
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/22/install-flume-with-docker/">安装Flume docker image</a>
     </h1>
   
 
       </header>
       
-      <div class="article-info article-info-post">
-        
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kafka/">kafka</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/zookeeper/">zookeeper</a></li></ul>
-	</div>
-
-        
-
-        <div class="clearfix"></div>
-      </div>
-      
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="compose-to-run-all-CONTAINER"><a href="#compose-to-run-all-CONTAINER" class="headerlink" title="compose to run all CONTAINER"></a>compose to run all CONTAINER</h2><blockquote>
-<p>edit /etc/hosts add zkserver1 to hosts in all zookeeper node,</p>
-<p>$sudo vi /etc/hosts</p>
-<p>192.168.1.215   zkserver1</p>
-<p>$sudo docker-compose up</p>
-<p>or</p>
-<p>$sudo docker-compose up -d</p>
+        <p>当 Docker 安装完成之后，你需要启动 docker 进程。  </p>
+<blockquote>
+<p>$ sudo service docker start<br>如果我们希望 Docker 默认开机启动，如下操作：  </p>
+<p>$ sudo chkconfig docker on<br>现在，我们来验证 Docker 是否正常工作。第一步，我们需要下载最新的 centos 镜像。  </p>
+<p>$ sudo docker pull hello-world  </p>
 </blockquote>
-<h2 id="scale-kafka-node"><a href="#scale-kafka-node" class="headerlink" title="scale kafka node"></a>scale kafka node</h2><blockquote>
-<p>$sudo docker-compose scale kafka=1</p>
+<p>下一步，我们运行下边的命令来查看镜像，确认镜像是否存在：  </p>
+<blockquote>
+<p>$ sudo docker images hello-world  </p>
 </blockquote>
-<h2 id="add-a-broker-manual"><a href="#add-a-broker-manual" class="headerlink" title="add a broker manual"></a>add a broker manual</h2><blockquote>
-<p>$sudo docker run -d -e KAFKA_BROKER_ID=3 -e KAFKA_ADVERTISED_HOST_NAME=192.168.1.215 -e KAFKA_ZOOKEEPER_CONNECT=192.168.1.215:2181 -p 9092:9092 wurstmeister/kafka:0.8.2.0</p>
-<p>$sudo docker run -e KAFKA_BROKER_ID=3 -e KAFKA_ADVERTISED_HOST_NAME=192.168.1.215 -e KAFKA_ZOOKEEPER_CONNECT=192.168.1.215:2181 -p 9092:9092 wurstmeister/kafka:0.8.2.0</p>
+<h3 id="pull-flume-image-and-build-new-image"><a href="#pull-flume-image-and-build-new-image" class="headerlink" title="pull flume image and build new image"></a>pull flume image and build new image</h3><p>1.pull flume image from docker hub  </p>
+<blockquote>
+<p>$ sudo docker pull probablyfine/flume  </p>
 </blockquote>
-<h2 id="create-a-topic-with-3-replication-and-1-partition"><a href="#create-a-topic-with-3-replication-and-1-partition" class="headerlink" title="create a topic with 3 replication and 1 partition"></a>create a topic with 3 replication and 1 partition</h2><blockquote>
-<p>$bin/kafka-topics.sh –create –zookeeper zkserver1:2181 –replication-factor 3 –partition 1 –topic  zgg.email</p>
+<p>2.edit flume conf   </p>
+<blockquote>
+<p>view flume-http.conf  </p>
 </blockquote>
-<h2 id="to-get-a-list-of-topics"><a href="#to-get-a-list-of-topics" class="headerlink" title="to get a list of topics"></a>to get a list of topics</h2><blockquote>
-<p>$bin/kafka-topics.sh –list –zookeeper zkserver1:2181</p>
+<p>3.build new flume image from Dockerfile  </p>
+<blockquote>
+<p>$ cd /data/work/app/docker/flume<br>$ sudo docker build -t zhiguoguo/flume-http .  </p>
 </blockquote>
-<h2 id="view-topic’s-properties"><a href="#view-topic’s-properties" class="headerlink" title="view topic’s properties"></a>view topic’s properties</h2><blockquote>
-<p>$bin/kafka-topics.sh –describe –zookeeper zkserver1:2181 –topic zgg.email</p>
+<p>3.check builded flume image   </p>
+<blockquote>
+<p>$ sudo docker images|grep flume-http  </p>
 </blockquote>
-<h2 id="Starting-a-producer-sending-messages"><a href="#Starting-a-producer-sending-messages" class="headerlink" title="Starting a producer - sending messages"></a>Starting a producer - sending messages</h2><blockquote>
-<p>$bin/kafka-console-producer.sh –broker-list zkserver1:11002 zkserver1:11003 zkserver1:11004 –topic zgg.email</p>
+<p>4.fun flume image   </p>
+<blockquote>
+<p>$ sudo docker run -d -p 444:50004 -t zhiguoguo/flume-http</p>
 </blockquote>
-<h2 id="Starting-a-consumer-consuming-messages"><a href="#Starting-a-consumer-consuming-messages" class="headerlink" title="Starting a consumer - consuming messages"></a>Starting a consumer - consuming messages</h2><blockquote>
-<p>$bin/kafka-console-consumer.sh –zookeeper zkserver1:2181 –from-beginning –topic zgg.email</p>
+<p>5.view running container logs</p>
+<blockquote>
+<p>$ sudo docker logs $(sudo docker ps -q)  </p>
 </blockquote>
+<p>6.stop running container</p>
+<blockquote>
+<p>$ sudo docker stop $(sudo docker ps -q)  </p>
+</blockquote>
+<p>7.test git</p>
 
       
     </div>
     
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2016/07/22/kafka-usage/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          kafka常用命令
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2016/07/22/install_flume_kafka_zookeeper_python_docker_desc/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">安装flume zookeeper  kafka python 环境 基于docker image 简单描述</div>
-      <strong class="article-nav-caption">></strong>
-    </a>
-  
-</nav>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/flume/">flume</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+	</div>
 
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
   
 </article>
 
@@ -328,22 +292,13 @@ scale ka">
 
 
 
-<section id="comments">
-  <div id="disqus_thread"></div>
-    <script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'pyxixi2012'; // required: replace example with your forum shortname
 
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-  </script>
-  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</section>
-
+  
+  
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    </nav>
+  
 </div>
       <footer id="footer">
   <div class="outer">
@@ -365,8 +320,8 @@ scale ka">
 		fancybox: undefined,
 		mathjax: false,
 		animate: true,
-		isHome: false,
-		isPost: true,
+		isHome: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
