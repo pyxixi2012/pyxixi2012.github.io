@@ -308,6 +308,7 @@
 <p>建立了一个hexo基于yilia的简单博客，把之前写过的一些东西陆续的上传到这里<br>过程其实比较简单，因为个人风格喜欢简约，所以选择了yilia的简约风格theme<br>尝试了duoshuo 和 disqus ,感觉还是disqus更符合我的风格，但是有点不太明白的是，为啥多说的配置在theme的_config.yml ,而disqus的配置却在hexo的_config.yml ,不懂～</p>
 <p>目前发布git pages 还是使用http方式，逐步会改到ssh方式</p>
 <p>计划写些自动发布的脚本，一个是方便deploy ，也是可以把之前的一些资料快速转移</p>
+<p>deploy到github后，用img的标签的图像不能正常显示，main.js报错，不能加show classname ，我用的firefox浏览器，可能是证书信任关系导致的，关闭protect就可以显示了</p>
 </blockquote>
 <h3 id="常用的参考资料"><a href="#常用的参考资料" class="headerlink" title="常用的参考资料"></a>常用的参考资料</h3><p><a href="https://hexo.io/zh-cn/" title="Hexo" target="_blank" rel="external">Hexo 中文参考</a></p>
 <p><a href="https://github.com/LouisBarranqueiro" title="hexo-theme-tranquilpeak" target="_blank" rel="external">hexo-theme-tranquilpeak</a></p>
@@ -1099,6 +1100,90 @@ ENTRYPOINT [ &quot;flume-ng&quot;, &quot;agent&quot;, &quot;-c&quot;, &quot;/opt
 
 
   
+    <article id="post-install_kafka_python_docker" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/07/22/install_kafka_python_docker/" class="article-date">
+  	<time datetime="2016-07-22T06:48:00.000Z" itemprop="datePublished">2016-07-22</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/22/install_kafka_python_docker/">build single zookeeper node and 3 kafka broker use wurstmeister/kafka</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="compose-to-run-all-CONTAINER"><a href="#compose-to-run-all-CONTAINER" class="headerlink" title="compose to run all CONTAINER"></a>compose to run all CONTAINER</h2><blockquote>
+<p>edit /etc/hosts add zkserver1 to hosts in all zookeeper node,</p>
+<p>$sudo vi /etc/hosts</p>
+<p>192.168.1.215   zkserver1</p>
+<p>$sudo docker-compose up</p>
+<p>or</p>
+<p>$sudo docker-compose up -d</p>
+</blockquote>
+<h2 id="scale-kafka-node"><a href="#scale-kafka-node" class="headerlink" title="scale kafka node"></a>scale kafka node</h2><blockquote>
+<p>$sudo docker-compose scale kafka=1</p>
+</blockquote>
+<h2 id="add-a-broker-manual"><a href="#add-a-broker-manual" class="headerlink" title="add a broker manual"></a>add a broker manual</h2><blockquote>
+<p>$sudo docker run -d -e KAFKA_BROKER_ID=3 -e KAFKA_ADVERTISED_HOST_NAME=192.168.1.215 -e KAFKA_ZOOKEEPER_CONNECT=192.168.1.215:2181 -p 9092:9092 wurstmeister/kafka:0.8.2.0</p>
+<p>$sudo docker run -e KAFKA_BROKER_ID=3 -e KAFKA_ADVERTISED_HOST_NAME=192.168.1.215 -e KAFKA_ZOOKEEPER_CONNECT=192.168.1.215:2181 -p 9092:9092 wurstmeister/kafka:0.8.2.0</p>
+</blockquote>
+<h2 id="create-a-topic-with-3-replication-and-1-partition"><a href="#create-a-topic-with-3-replication-and-1-partition" class="headerlink" title="create a topic with 3 replication and 1 partition"></a>create a topic with 3 replication and 1 partition</h2><blockquote>
+<p>$bin/kafka-topics.sh –create –zookeeper zkserver1:2181 –replication-factor 3 –partition 1 –topic  zgg.email</p>
+</blockquote>
+<h2 id="to-get-a-list-of-topics"><a href="#to-get-a-list-of-topics" class="headerlink" title="to get a list of topics"></a>to get a list of topics</h2><blockquote>
+<p>$bin/kafka-topics.sh –list –zookeeper zkserver1:2181</p>
+</blockquote>
+<h2 id="view-topic’s-properties"><a href="#view-topic’s-properties" class="headerlink" title="view topic’s properties"></a>view topic’s properties</h2><blockquote>
+<p>$bin/kafka-topics.sh –describe –zookeeper zkserver1:2181 –topic zgg.email</p>
+</blockquote>
+<h2 id="Starting-a-producer-sending-messages"><a href="#Starting-a-producer-sending-messages" class="headerlink" title="Starting a producer - sending messages"></a>Starting a producer - sending messages</h2><blockquote>
+<p>$bin/kafka-console-producer.sh –broker-list zkserver1:11002 zkserver1:11003 zkserver1:11004 –topic zgg.email</p>
+</blockquote>
+<h2 id="Starting-a-consumer-consuming-messages"><a href="#Starting-a-consumer-consuming-messages" class="headerlink" title="Starting a consumer - consuming messages"></a>Starting a consumer - consuming messages</h2><blockquote>
+<p>$bin/kafka-console-consumer.sh –zookeeper zkserver1:2181 –from-beginning –topic zgg.email</p>
+</blockquote>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kafka/">kafka</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/zookeeper/">zookeeper</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-install_flume_kafka_zookeeper_python_docker_desc" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -1170,90 +1255,6 @@ ENTRYPOINT [ &quot;flume-ng&quot;, &quot;agent&quot;, &quot;-c&quot;, &quot;/opt
       
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/flume/">flume</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kafka/">kafka</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/zookeeper/">zookeeper</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-install_kafka_python_docker" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/07/22/install_kafka_python_docker/" class="article-date">
-  	<time datetime="2016-07-22T06:48:00.000Z" itemprop="datePublished">2016-07-22</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/22/install_kafka_python_docker/">build single zookeeper node and 3 kafka broker use wurstmeister/kafka</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="compose-to-run-all-CONTAINER"><a href="#compose-to-run-all-CONTAINER" class="headerlink" title="compose to run all CONTAINER"></a>compose to run all CONTAINER</h2><blockquote>
-<p>edit /etc/hosts add zkserver1 to hosts in all zookeeper node,</p>
-<p>$sudo vi /etc/hosts</p>
-<p>192.168.1.215   zkserver1</p>
-<p>$sudo docker-compose up</p>
-<p>or</p>
-<p>$sudo docker-compose up -d</p>
-</blockquote>
-<h2 id="scale-kafka-node"><a href="#scale-kafka-node" class="headerlink" title="scale kafka node"></a>scale kafka node</h2><blockquote>
-<p>$sudo docker-compose scale kafka=1</p>
-</blockquote>
-<h2 id="add-a-broker-manual"><a href="#add-a-broker-manual" class="headerlink" title="add a broker manual"></a>add a broker manual</h2><blockquote>
-<p>$sudo docker run -d -e KAFKA_BROKER_ID=3 -e KAFKA_ADVERTISED_HOST_NAME=192.168.1.215 -e KAFKA_ZOOKEEPER_CONNECT=192.168.1.215:2181 -p 9092:9092 wurstmeister/kafka:0.8.2.0</p>
-<p>$sudo docker run -e KAFKA_BROKER_ID=3 -e KAFKA_ADVERTISED_HOST_NAME=192.168.1.215 -e KAFKA_ZOOKEEPER_CONNECT=192.168.1.215:2181 -p 9092:9092 wurstmeister/kafka:0.8.2.0</p>
-</blockquote>
-<h2 id="create-a-topic-with-3-replication-and-1-partition"><a href="#create-a-topic-with-3-replication-and-1-partition" class="headerlink" title="create a topic with 3 replication and 1 partition"></a>create a topic with 3 replication and 1 partition</h2><blockquote>
-<p>$bin/kafka-topics.sh –create –zookeeper zkserver1:2181 –replication-factor 3 –partition 1 –topic  zgg.email</p>
-</blockquote>
-<h2 id="to-get-a-list-of-topics"><a href="#to-get-a-list-of-topics" class="headerlink" title="to get a list of topics"></a>to get a list of topics</h2><blockquote>
-<p>$bin/kafka-topics.sh –list –zookeeper zkserver1:2181</p>
-</blockquote>
-<h2 id="view-topic’s-properties"><a href="#view-topic’s-properties" class="headerlink" title="view topic’s properties"></a>view topic’s properties</h2><blockquote>
-<p>$bin/kafka-topics.sh –describe –zookeeper zkserver1:2181 –topic zgg.email</p>
-</blockquote>
-<h2 id="Starting-a-producer-sending-messages"><a href="#Starting-a-producer-sending-messages" class="headerlink" title="Starting a producer - sending messages"></a>Starting a producer - sending messages</h2><blockquote>
-<p>$bin/kafka-console-producer.sh –broker-list zkserver1:11002 zkserver1:11003 zkserver1:11004 –topic zgg.email</p>
-</blockquote>
-<h2 id="Starting-a-consumer-consuming-messages"><a href="#Starting-a-consumer-consuming-messages" class="headerlink" title="Starting a consumer - consuming messages"></a>Starting a consumer - consuming messages</h2><blockquote>
-<p>$bin/kafka-console-consumer.sh –zookeeper zkserver1:2181 –from-beginning –topic zgg.email</p>
-</blockquote>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kafka/">kafka</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/zookeeper/">zookeeper</a></li></ul>
 	</div>
 
       
