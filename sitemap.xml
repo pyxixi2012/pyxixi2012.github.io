@@ -2,98 +2,105 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://pyxixi2012.github.io/2016/07/23/Install-chrome-on-Unbuntu-16/</loc>
+    <loc>http://pyxixi2012.github.io/categories/index.html</loc>
+    
+    <lastmod>2016-07-25T06:14:38.199Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://pyxixi2012.github.io/2016/07/25/test-my-categories/</loc>
+    
+    <lastmod>2016-07-25T05:40:41.993Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://pyxixi2012.github.io/tags/index.html</loc>
+    
+    <lastmod>2016-07-25T04:54:26.977Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://pyxixi2012.github.io/2016/07/23/2016/Install%20atom%20plugin%20--%20markdown%20writer/</loc>
+    
+    <lastmod>2016-07-25T02:37:57.119Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://pyxixi2012.github.io/about/index.html</loc>
+    
+    <lastmod>2016-07-25T02:05:49.378Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://pyxixi2012.github.io/2016/07/23/Install-chrome-on-Unbuntu-16/</loc>
     
     <lastmod>2016-07-23T09:07:29.054Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://pyxixi2012.github.io/2016/07/23/%E5%AD%A6%E4%B9%A0Hexo%EF%BC%8C%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAgit-pages%E7%9A%84%E5%8D%9A%E5%AE%A2/</loc>
+    <loc>http://pyxixi2012.github.io/2016/07/23/%E5%AD%A6%E4%B9%A0Hexo%EF%BC%8C%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAgit-pages%E7%9A%84%E5%8D%9A%E5%AE%A2/</loc>
     
     <lastmod>2016-07-23T08:32:03.195Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://pyxixi2012.github.io/tags/index.html</loc>
-    
-    <lastmod>2016-07-23T06:49:21.600Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://pyxixi2012.github.io/tag/index.html</loc>
-    
-    <lastmod>2016-07-23T06:49:10.216Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://pyxixi2012.github.io/2016/07/23/2016/Install%20atom%20plugin%20--%20markdown%20writer/</loc>
-    
-    <lastmod>2016-07-23T06:44:27.441Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://pyxixi2012.github.io/2016/07/22/install_docker_spark/</loc>
+    <loc>http://pyxixi2012.github.io/2016/07/22/install_docker_spark/</loc>
     
     <lastmod>2016-07-23T02:56:53.534Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://pyxixi2012.github.io/categories/index.html</loc>
-    
-    <lastmod>2016-07-23T02:33:43.398Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://pyxixi2012.github.io/2016/07/22/install-pyxixi2012-blog/</loc>
+    <loc>http://pyxixi2012.github.io/2016/07/22/install_kafka_python_docker/</loc>
     
     <lastmod>2016-07-23T02:33:43.382Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://pyxixi2012.github.io/2016/07/22/install-flume-with-docker/</loc>
+    <loc>http://pyxixi2012.github.io/2016/07/22/install-pyxixi2012-blog/</loc>
     
     <lastmod>2016-07-23T02:33:43.382Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://pyxixi2012.github.io/2016/07/22/install_flume_kafka_zookeeper_python_docker_desc/</loc>
+    <loc>http://pyxixi2012.github.io/2016/07/22/kafka-usage/</loc>
     
     <lastmod>2016-07-23T02:33:43.382Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://pyxixi2012.github.io/2016/07/22/install_kafka_python_docker/</loc>
+    <loc>http://pyxixi2012.github.io/2016/07/22/install_flume_kafka_zookeeper_python_docker_desc/</loc>
     
     <lastmod>2016-07-23T02:33:43.382Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://pyxixi2012.github.io/2016/07/22/install_flume_kafka_zookeeper_python_docker/</loc>
+    <loc>http://pyxixi2012.github.io/2016/07/22/install-flume-with-docker/</loc>
     
     <lastmod>2016-07-23T02:33:43.382Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://pyxixi2012.github.io/2016/07/22/kafka-docker-usage/</loc>
+    <loc>http://pyxixi2012.github.io/2016/07/22/install_flume_kafka_zookeeper_python_docker/</loc>
     
     <lastmod>2016-07-23T02:33:43.382Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://pyxixi2012.github.io/2016/07/22/kafka-usage/</loc>
+    <loc>http://pyxixi2012.github.io/2016/07/22/kafka-docker-usage/</loc>
     
     <lastmod>2016-07-23T02:33:43.382Z</lastmod>
     
