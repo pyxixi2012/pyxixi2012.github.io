@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://pyxixi2012.github.io/2016/07/27/Setting%20up%20ElasticSearch%20with%20MongoDB/</loc>
+    
+    <lastmod>2016-07-28T09:56:26.306Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://pyxixi2012.github.io/2016/07/27/JavaScript-Development-Environment/</loc>
     
     <lastmod>2016-07-28T05:34:23.527Z</lastmod>
@@ -65,7 +72,14 @@
   </url>
   
   <url>
-    <loc>http://pyxixi2012.github.io/2016/07/22/install-flume-with-docker/</loc>
+    <loc>http://pyxixi2012.github.io/2016/07/22/kafka-usage/</loc>
+    
+    <lastmod>2016-07-23T02:33:43.382Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://pyxixi2012.github.io/2016/07/22/install_flume_kafka_zookeeper_python_docker/</loc>
     
     <lastmod>2016-07-23T02:33:43.382Z</lastmod>
     
@@ -79,7 +93,7 @@
   </url>
   
   <url>
-    <loc>http://pyxixi2012.github.io/2016/07/22/kafka-usage/</loc>
+    <loc>http://pyxixi2012.github.io/2016/07/22/install_kafka_python_docker/</loc>
     
     <lastmod>2016-07-23T02:33:43.382Z</lastmod>
     
@@ -93,14 +107,7 @@
   </url>
   
   <url>
-    <loc>http://pyxixi2012.github.io/2016/07/22/install_kafka_python_docker/</loc>
-    
-    <lastmod>2016-07-23T02:33:43.382Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://pyxixi2012.github.io/2016/07/22/install_flume_kafka_zookeeper_python_docker/</loc>
+    <loc>http://pyxixi2012.github.io/2016/07/22/install-flume-with-docker/</loc>
     
     <lastmod>2016-07-23T02:33:43.382Z</lastmod>
     

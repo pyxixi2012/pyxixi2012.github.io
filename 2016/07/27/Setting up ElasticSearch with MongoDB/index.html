@@ -4,17 +4,27 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: frontend | 流光-岁月</title>
+  <title>Setting up ElasticSearch with MongoDB | 流光-岁月</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一个情商不高，智商中等，没啥情趣的IT男,我的有点是没啥明显的缺点～～">
-<meta property="og:type" content="website">
-<meta property="og:title" content="流光-岁月">
-<meta property="og:url" content="http://pyxixi2012.github.io/tags/frontend/index.html">
+  <meta name="description" content="1. Install and Config MongoDB replcate set
+prepare install$ mkdir /data/app &amp;amp;&amp;amp; cd /data/app
+$ wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-3.2.5.tgz
+$ tar zvxf mongodb-lin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Setting up ElasticSearch with MongoDB">
+<meta property="og:url" content="http://pyxixi2012.github.io/2016/07/27/Setting up ElasticSearch with MongoDB/index.html">
 <meta property="og:site_name" content="流光-岁月">
-<meta property="og:description" content="一个情商不高，智商中等，没啥情趣的IT男,我的有点是没啥明显的缺点～～">
+<meta property="og:description" content="1. Install and Config MongoDB replcate set
+prepare install$ mkdir /data/app &amp;amp;&amp;amp; cd /data/app
+$ wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-3.2.5.tgz
+$ tar zvxf mongodb-lin">
+<meta property="og:updated_time" content="2016-07-28T09:56:26.306Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="流光-岁月">
-<meta name="twitter:description" content="一个情商不高，智商中等，没啥情趣的IT男,我的有点是没啥明显的缺点～～">
+<meta name="twitter:title" content="Setting up ElasticSearch with MongoDB">
+<meta name="twitter:description" content="1. Install and Config MongoDB replcate set
+prepare install$ mkdir /data/app &amp;amp;&amp;amp; cd /data/app
+$ wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-3.2.5.tgz
+$ tar zvxf mongodb-lin">
   
     <link rel="alternative" href="/atom.xml" title="流光-岁月" type="application/atom+xml">
   
@@ -71,39 +81,144 @@
   </div>
 </header>
     <div class="outer">
-      <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/07/27/JavaScript-Development-Environment/" class="archive-article-date">
-  <time datetime="2016-07-27T05:09:17.000Z" itemprop="datePublished">7月 27</time>
+      <section id="main"><article id="post-Setting up ElasticSearch with MongoDB" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/27/Setting up ElasticSearch with MongoDB/" class="article-date">
+  <time datetime="2016-07-27T05:09:17.000Z" itemprop="datePublished">2016-07-27</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/post/">post</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/07/27/JavaScript-Development-Environment/">JavaScript Development Environment</a>
+    <h1 class="article-title" itemprop="name">
+      Setting up ElasticSearch with MongoDB
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-Install-and-Config-MongoDB-replcate-set"><a href="#1-Install-and-Config-MongoDB-replcate-set" class="headerlink" title="1. Install and Config MongoDB replcate set"></a>1. Install and Config MongoDB replcate set</h2><blockquote>
+<h3 id="prepare-install"><a href="#prepare-install" class="headerlink" title="prepare install"></a>prepare install</h3><p>$ mkdir /data/app &amp;&amp; cd /data/app</p>
+<p>$ wget <a href="https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-3.2.5.tgz" target="_blank" rel="external">https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-3.2.5.tgz</a></p>
+<p>$ tar zvxf mongodb-linux-x86_64-rhel70-3.2.5.tgz</p>
+<p>$ mv mongodb-linux-x86_64-rhel70-3.2.5 mongodb-3.2.5</p>
+<p>$ mkdir -p /data/mongodbpath/db0 /data/mongodbpath/db1 /data/mongodbpath/db2</p>
+<p>$ cd /data/app/mongodb-3.2.5/bin</p>
+<h3 id="start-three-mongodb-instance"><a href="#start-three-mongodb-instance" class="headerlink" title="start three mongodb instance"></a>start three mongodb instance</h3><p>$ nohup ./mongod –port 10000 –dbpath /data/mongodbpath/db0 –replSet rs0  &amp;</p>
+<p>$ nohup ./mongod –port 10001 –dbpath /data/mongodbpath/db1 –replSet rs0  &amp;</p>
+<p>$ nohup ./mongod –port 10002 –dbpath /data/mongodbpath/db2 –replSet rs0  &amp;</p>
+<h3 id="config-mongodb-replicat-set"><a href="#config-mongodb-replicat-set" class="headerlink" title="config mongodb replicat set"></a>config mongodb replicat set</h3><p>$ ./mongo –port 10000</p>
+<p>mongo shell &gt; config = {_id: ‘rs0’, members: [ {_id: 0, host: ‘localhost:10000’}, {_id: 1, host: ‘localhost:10001’}, {_id: 2, host: ‘localhost:10002’}]};</p>
+<p>mongo shell &gt; rs.initiate(config);</p>
+<p>###check rs status and conf<br>mongo shell &gt; rs.conf()</p>
+</blockquote>
+<h2 id="2-Install-and-Config-ElasticSearch"><a href="#2-Install-and-Config-ElasticSearch" class="headerlink" title="2. Install and Config ElasticSearch"></a>2. Install and Config ElasticSearch</h2><blockquote>
+<h3 id="prepare-install-1"><a href="#prepare-install-1" class="headerlink" title="prepare install"></a>prepare install</h3><p>$ cd /data/app</p>
+<p>$ wget <a href="https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.3.1/elasticsearch-2.3.1.tar.gz" target="_blank" rel="external">https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/2.3.1/elasticsearch-2.3.1.tar.gz</a></p>
+<p>$ tar zvxf elasticsearch-2.3.1.tar.gz</p>
+<p>$ cd elasticsearch-2.3.1</p>
+<h3 id="start-elasticsearch-server"><a href="#start-elasticsearch-server" class="headerlink" title="start elasticsearch server"></a>start elasticsearch server</h3><p>$ nohup bin/elasticsearch &amp;</p>
+<p>$ curl -XGET <a href="http://localhost:9200/" target="_blank" rel="external">http://localhost:9200/</a></p>
+</blockquote>
+<h2 id="3-Install-and-Config-MongoDB-river"><a href="#3-Install-and-Config-MongoDB-river" class="headerlink" title="3. Install and Config MongoDB river"></a>3. Install and Config MongoDB river</h2><blockquote>
+<p>$ sudo bin/plugin –install com.github.richardwilly98.elasticsearch/elasticsearch-river-mongodb/2.0.9<br>$ sudo bin/plugin install elasticsearch/elasticsearch-mapper-attachments/3.1.2</p>
+</blockquote>
+<h2 id="4-python-with-es"><a href="#4-python-with-es" class="headerlink" title="4. python with es"></a>4. python with es</h2><blockquote>
+<p>install pip</p>
+<p>$ wget <a href="https://bootstrap.pypa.io/get-pip.py" target="_blank" rel="external">https://bootstrap.pypa.io/get-pip.py</a> &amp;&amp; sudo python get-pip.py &amp;&amp; sudo pip install elasticsearch</p>
+<p>$ python test_es.py</p>
+</blockquote>
+<pre><code># url link : https://github.com/elastic/elasticsearch-py
+# doc link : http://elasticsearch-py.readthedocs.org/en/master/
+
+from datetime import datetime
+from elasticsearch import Elasticsearch
+es = Elasticsearch()
+
+doc = {
+    &apos;author&apos;: &apos;kimchy&apos;,
+    &apos;text&apos;: &apos;Elasticsearch: cool. bonsai cool.&apos;,
+    &apos;timestamp&apos;: datetime.now(),
+}
+res = es.index(index=&quot;test-index&quot;, doc_type=&apos;tweet&apos;, id=1, body=doc)
+print(res[&apos;created&apos;])
+
+res = es.get(index=&quot;test-index&quot;, doc_type=&apos;tweet&apos;, id=1)
+print(res[&apos;_source&apos;])
+
+es.indices.refresh(index=&quot;test-index&quot;)
+
+res = es.search(index=&quot;test-index&quot;, body={&quot;query&quot;: {&quot;match_all&quot;: {}}})
+print(&quot;Got %d Hits:&quot; % res[&apos;hits&apos;][&apos;total&apos;])
+for hit in res[&apos;hits&apos;][&apos;hits&apos;]:
+    print(&quot;%(timestamp)s %(author)s: %(text)s&quot; % hit[&quot;_source&quot;])
+</code></pre><blockquote>
+<p>$ python test_es.py</p>
+</blockquote>
+<pre><code>True
+{u&apos;text&apos;: u&apos;Elasticsearch: cool. bonsai cool.&apos;, u&apos;author&apos;: u&apos;kimchy&apos;, u&apos;timestamp&apos;: u&apos;2016-04-26T20:12:56.878603&apos;}
+Got 1 Hits:
+2016-04-26T20:12:56.878603 kimchy: Elasticsearch: cool. bonsai cool.
+</code></pre><blockquote>
+<p>$ python test</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://pyxixi2012.github.io/2016/07/27/Setting up ElasticSearch with MongoDB/" data-id="cir65b4li0006dk6rtzrv1fkf" class="article-share-link" data-share="baidu" data-title="Setting up ElasticSearch with MongoDB">Share</a>
+      
+
+      
+        <a href="http://pyxixi2012.github.io/2016/07/27/Setting up ElasticSearch with MongoDB/#disqus_thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ElasticSearch/">ElasticSearch</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MongoDB/">MongoDB</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/07/27/JavaScript-Development-Environment/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JavaScript Development Environment
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/07/25/test-my-categories/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">test my categories</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
+
+
+  <section id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
 </section>
       
       <aside id="sidebar">
@@ -230,11 +345,13 @@
 <script>
   var disqus_shortname = 'pyxixi2012';
   
+  var disqus_url = 'http://pyxixi2012.github.io/2016/07/27/Setting up ElasticSearch with MongoDB/';
+  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>

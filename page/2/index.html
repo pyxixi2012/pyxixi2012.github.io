@@ -73,6 +73,136 @@
     <div class="outer">
       <section id="main">
   
+    <article id="post-install_kafka_python_docker" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/22/install_kafka_python_docker/" class="article-date">
+  <time datetime="2016-07-22T06:48:00.000Z" itemprop="datePublished">2016-07-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/22/install_kafka_python_docker/">build single zookeeper node and 3 kafka broker use wurstmeister/kafka</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="compose-to-run-all-CONTAINER"><a href="#compose-to-run-all-CONTAINER" class="headerlink" title="compose to run all CONTAINER"></a>compose to run all CONTAINER</h2><blockquote>
+<p>edit /etc/hosts add zkserver1 to hosts in all zookeeper node,</p>
+<p>$sudo vi /etc/hosts</p>
+<p>192.168.1.215   zkserver1</p>
+<p>$sudo docker-compose up</p>
+<p>or</p>
+<p>$sudo docker-compose up -d</p>
+</blockquote>
+<h2 id="scale-kafka-node"><a href="#scale-kafka-node" class="headerlink" title="scale kafka node"></a>scale kafka node</h2><blockquote>
+<p>$sudo docker-compose scale kafka=1</p>
+</blockquote>
+<h2 id="add-a-broker-manual"><a href="#add-a-broker-manual" class="headerlink" title="add a broker manual"></a>add a broker manual</h2><blockquote>
+<p>$sudo docker run -d -e KAFKA_BROKER_ID=3 -e KAFKA_ADVERTISED_HOST_NAME=192.168.1.215 -e KAFKA_ZOOKEEPER_CONNECT=192.168.1.215:2181 -p 9092:9092 wurstmeister/kafka:0.8.2.0</p>
+<p>$sudo docker run -e KAFKA_BROKER_ID=3 -e KAFKA_ADVERTISED_HOST_NAME=192.168.1.215 -e KAFKA_ZOOKEEPER_CONNECT=192.168.1.215:2181 -p 9092:9092 wurstmeister/kafka:0.8.2.0</p>
+</blockquote>
+<h2 id="create-a-topic-with-3-replication-and-1-partition"><a href="#create-a-topic-with-3-replication-and-1-partition" class="headerlink" title="create a topic with 3 replication and 1 partition"></a>create a topic with 3 replication and 1 partition</h2><blockquote>
+<p>$bin/kafka-topics.sh –create –zookeeper zkserver1:2181 –replication-factor 3 –partition 1 –topic  zgg.email</p>
+</blockquote>
+<h2 id="to-get-a-list-of-topics"><a href="#to-get-a-list-of-topics" class="headerlink" title="to get a list of topics"></a>to get a list of topics</h2><blockquote>
+<p>$bin/kafka-topics.sh –list –zookeeper zkserver1:2181</p>
+</blockquote>
+<h2 id="view-topic’s-properties"><a href="#view-topic’s-properties" class="headerlink" title="view topic’s properties"></a>view topic’s properties</h2><blockquote>
+<p>$bin/kafka-topics.sh –describe –zookeeper zkserver1:2181 –topic zgg.email</p>
+</blockquote>
+<h2 id="Starting-a-producer-sending-messages"><a href="#Starting-a-producer-sending-messages" class="headerlink" title="Starting a producer - sending messages"></a>Starting a producer - sending messages</h2><blockquote>
+<p>$bin/kafka-console-producer.sh –broker-list zkserver1:11002 zkserver1:11003 zkserver1:11004 –topic zgg.email</p>
+</blockquote>
+<h2 id="Starting-a-consumer-consuming-messages"><a href="#Starting-a-consumer-consuming-messages" class="headerlink" title="Starting a consumer - consuming messages"></a>Starting a consumer - consuming messages</h2><blockquote>
+<p>$bin/kafka-console-consumer.sh –zookeeper zkserver1:2181 –from-beginning –topic zgg.email</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://pyxixi2012.github.io/2016/07/22/install_kafka_python_docker/" data-id="cir65b4lu000idk6rq4n1vwce" class="article-share-link" data-share="baidu" data-title="build single zookeeper node and 3 kafka broker use wurstmeister/kafka">Share</a>
+      
+
+      
+        <a href="http://pyxixi2012.github.io/2016/07/22/install_kafka_python_docker/#disqus_thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kafka/">kafka</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/zookeeper/">zookeeper</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-kafka-usage" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/22/kafka-usage/" class="article-date">
+  <time datetime="2016-07-22T06:48:00.000Z" itemprop="datePublished">2016-07-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/22/kafka-usage/">kafka常用命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="build-zookeeper"><a href="#build-zookeeper" class="headerlink" title="build zookeeper"></a>build zookeeper</h3><blockquote>
+<p>$docker run -d -p 2181:2181 -p 2888:2888 -p 3888:3888 jplock/zookeeper<br>注意： 需要修改防火墙，开放相关端口</p>
+<h3 id="build-apache-kafka"><a href="#build-apache-kafka" class="headerlink" title="build apache kafka"></a>build apache kafka</h3><p>pull kafak docker image from  docker hub digitalwonderland/kafka</p>
+<p>$sudo docker run -d -e KAFKA_BROKER_ID=1 -e KAFKA_ADVERTISED_HOST_NAME=192.168.1.215 -e KAFKA_ZOOKEEPER_CONNECT=192.168.1.215 digitalwonderland/kafka</p>
+</blockquote>
+<h3 id="test-realmsg-topic"><a href="#test-realmsg-topic" class="headerlink" title="test realmsg topic"></a>test realmsg topic</h3><blockquote>
+<p>create realmsg topic with 1 partition and 1 replication<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$bin/kafka-topics.sh --create --zookeeper 192.168.1.215:2181,192.168.1.208:2181,192.168.1.138:2181 --replication-factor 1 --partition 1 --topic  realmsg</div></pre></td></tr></table></figure></p>
+<p>list all exists topics<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$bin/kafka-topics.sh --list --zookeeper 192.168.1.215:2181 --replication-factor 1 --partition 1 --topic realmsg</div></pre></td></tr></table></figure></p>
+<p>view realmsg topic info<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$bin/kafka-topics.sh --describe --zookeeper 192.168.1.215:2181 --topic realmsg</div></pre></td></tr></table></figure></p>
+<p>create a consumer to test realmsg msg<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$bin/kafka-console-consumer.sh --zookeeper 192.168.1.215:2181 --from-beginning --topic realmsg</div></pre></td></tr></table></figure></p>
+<p>create a providor to test realmsg<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$bin/kafka-console-producer.sh --broker-list 192.168.1.215:11002 192.168.1.215:11003 --topic realmsg</div></pre></td></tr></table></figure></p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://pyxixi2012.github.io/2016/07/22/kafka-usage/" data-id="cir65b4lx000mdk6rl39oig7q" class="article-share-link" data-share="baidu" data-title="kafka常用命令">Share</a>
+      
+
+      
+        <a href="http://pyxixi2012.github.io/2016/07/22/kafka-usage/#disqus_thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kafka/">kafka</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-install-flume-with-docker" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/07/22/install-flume-with-docker/" class="article-date">
@@ -139,7 +269,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://pyxixi2012.github.io/2016/07/22/install-flume-with-docker/" data-id="cir5vy6jq0002ps6r5auobvru" class="article-share-link" data-share="baidu" data-title="安装Flume docker image">Share</a>
+        <a data-url="http://pyxixi2012.github.io/2016/07/22/install-flume-with-docker/" data-id="cir65b4lk0008dk6ryog83ogl" class="article-share-link" data-share="baidu" data-title="安装Flume docker image">Share</a>
       
 
       
@@ -156,9 +286,9 @@
 
 
   
-    <article id="post-kafka-usage" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-install_flume_kafka_zookeeper_python_docker_desc" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/07/22/kafka-usage/" class="article-date">
+    <a href="/2016/07/22/install_flume_kafka_zookeeper_python_docker_desc/" class="article-date">
   <time datetime="2016-07-22T06:48:00.000Z" itemprop="datePublished">2016-07-22</time>
 </a>
     
@@ -170,7 +300,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/22/kafka-usage/">kafka常用命令</a>
+      <a class="article-title" href="/2016/07/22/install_flume_kafka_zookeeper_python_docker_desc/">安装flume zookeeper  kafka python 环境 基于docker image 简单描述</a>
     </h1>
   
 
@@ -178,391 +308,54 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="build-zookeeper"><a href="#build-zookeeper" class="headerlink" title="build zookeeper"></a>build zookeeper</h3><blockquote>
-<p>$docker run -d -p 2181:2181 -p 2888:2888 -p 3888:3888 jplock/zookeeper<br>注意： 需要修改防火墙，开放相关端口</p>
-<h3 id="build-apache-kafka"><a href="#build-apache-kafka" class="headerlink" title="build apache kafka"></a>build apache kafka</h3><p>pull kafak docker image from  docker hub digitalwonderland/kafka</p>
-<p>$sudo docker run -d -e KAFKA_BROKER_ID=1 -e KAFKA_ADVERTISED_HOST_NAME=192.168.1.215 -e KAFKA_ZOOKEEPER_CONNECT=192.168.1.215 digitalwonderland/kafka</p>
+        <h1 id="安装flume-zookeeper-kafka-python-环境-基于docker-image"><a href="#安装flume-zookeeper-kafka-python-环境-基于docker-image" class="headerlink" title="安装flume zookeeper kafka python 环境 基于docker image"></a>安装flume zookeeper kafka python 环境 基于docker image</h1><h2 id="建立zgsystem的消息系统"><a href="#建立zgsystem的消息系统" class="headerlink" title="建立zgsystem的消息系统"></a>建立zgsystem的消息系统</h2><h2 id="Docker-Usage"><a href="#Docker-Usage" class="headerlink" title="Docker Usage"></a>Docker Usage</h2><h3 id="links"><a href="#links" class="headerlink" title="links :"></a>links :</h3><h4 id="About-Docker-Command"><a href="#About-Docker-Command" class="headerlink" title="About Docker Command"></a>About Docker Command</h4><ul>
+<li><p>Docker image and container via docker commands (search, pull, run, ps, restart, attach, and rm)<br><a href="http://www.bogotobogo.com/DevOps/Docker/Docker_Commands_for_Images_Container.php" target="_blank" rel="external">http://www.bogotobogo.com/DevOps/Docker/Docker_Commands_for_Images_Container.php</a></p>
+</li>
+<li><p>More on Docker Run command<br><a href="http://www.bogotobogo.com/DevOps/Docker/Docker_Run_Command.php" target="_blank" rel="external">http://www.bogotobogo.com/DevOps/Docker/Docker_Run_Command.php</a></p>
+</li>
+<li><p>Linking containers and volume for datastore<br><a href="http://www.bogotobogo.com/DevOps/Docker/Docker_Container_Linking_Connect_with_linking_system_Communication_across_links_Environment_variables.php" target="_blank" rel="external">http://www.bogotobogo.com/DevOps/Docker/Docker_Container_Linking_Connect_with_linking_system_Communication_across_links_Environment_variables.php</a></p>
+</li>
+</ul>
+<h4 id="About-Dockerfile"><a href="#About-Dockerfile" class="headerlink" title="About Dockerfile"></a>About Dockerfile</h4><ul>
+<li><p>Dockerfiles : building Docker images automatically - FROM, MAINTAINER, and build context<br><a href="http://www.bogotobogo.com/DevOps/Docker/Docker_Dockerfile_to_build_images_automatically.php" target="_blank" rel="external">http://www.bogotobogo.com/DevOps/Docker/Docker_Dockerfile_to_build_images_automatically.php</a></p>
+</li>
+<li><p>Dockerfiles : building Docker images automatically II - revisiting FROM, MAINTAINER, build context, and caching<br><a href="http://www.bogotobogo.com/DevOps/Docker/Docker_Dockerfile_to_build_images_automatically_2.php" target="_blank" rel="external">http://www.bogotobogo.com/DevOps/Docker/Docker_Dockerfile_to_build_images_automatically_2.php</a></p>
+</li>
+<li><p>Dockerfiles : building Docker images automatically III - RUN<br><a href="http://www.bogotobogo.com/DevOps/Docker/Docker_Dockerfile_to_build_images_automatically_3.php" target="_blank" rel="external">http://www.bogotobogo.com/DevOps/Docker/Docker_Dockerfile_to_build_images_automatically_3.php</a></p>
+</li>
+<li><p>Dockerfile - Build Docker images automatically IV - CMD<br><a href="http://www.bogotobogo.com/DevOps/Docker/Docker_Dockerfile_to_build_images_automatically_4_CMD.php" target="_blank" rel="external">http://www.bogotobogo.com/DevOps/Docker/Docker_Dockerfile_to_build_images_automatically_4_CMD.php</a></p>
+</li>
+</ul>
+<h2 id="Apache-Flume"><a href="#Apache-Flume" class="headerlink" title="Apache Flume"></a>Apache Flume</h2><blockquote>
+<p>使用Apache Flume 作为消息收集的通道 ，为不同消息来源定义不同的message type ，如email ，sms ，applog等</p>
+<p>路由到不同的Sink 如Mongodb, Log File ,Apache Kafka etc..</p>
+<p>所有消息都默认sink为mongodb ，记录所有消息和日志信息</p>
+<p>目前使用Sink有，Mongodb ，Kafka ，Log</p>
 </blockquote>
-<h3 id="test-realmsg-topic"><a href="#test-realmsg-topic" class="headerlink" title="test realmsg topic"></a>test realmsg topic</h3><blockquote>
-<p>create realmsg topic with 1 partition and 1 replication<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$bin/kafka-topics.sh --create --zookeeper 192.168.1.215:2181,192.168.1.208:2181,192.168.1.138:2181 --replication-factor 1 --partition 1 --topic  realmsg</div></pre></td></tr></table></figure></p>
-<p>list all exists topics<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$bin/kafka-topics.sh --list --zookeeper 192.168.1.215:2181 --replication-factor 1 --partition 1 --topic realmsg</div></pre></td></tr></table></figure></p>
-<p>view realmsg topic info<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$bin/kafka-topics.sh --describe --zookeeper 192.168.1.215:2181 --topic realmsg</div></pre></td></tr></table></figure></p>
-<p>create a consumer to test realmsg msg<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$bin/kafka-console-consumer.sh --zookeeper 192.168.1.215:2181 --from-beginning --topic realmsg</div></pre></td></tr></table></figure></p>
-<p>create a providor to test realmsg<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$bin/kafka-console-producer.sh --broker-list 192.168.1.215:11002 192.168.1.215:11003 --topic realmsg</div></pre></td></tr></table></figure></p>
+<h2 id="Zookeeper"><a href="#Zookeeper" class="headerlink" title="Zookeeper"></a>Zookeeper</h2><blockquote>
+<p>version : 3.4.6</p>
+</blockquote>
+<h2 id="Apache-Kafka"><a href="#Apache-Kafka" class="headerlink" title="Apache Kafka"></a>Apache Kafka</h2><blockquote>
+<p>version : 2.9.1-0.8.2.2</p>
+<p>建立一个Zookeeper ，3个Kafka broker 结构的消息处理系统</p>
+<p>用Python实现Kafka Consumer ，处理email 和 sms Topic</p>
+</blockquote>
+<h2 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h2><blockquote>
+<p>基于Python 2.7</p>
+</blockquote>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><blockquote>
+<p>需要修改防火墙，开放相关端口</p>
 </blockquote>
 
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://pyxixi2012.github.io/2016/07/22/kafka-usage/" data-id="cir5vy6k8000fps6rsx5d47si" class="article-share-link" data-share="baidu" data-title="kafka常用命令">Share</a>
+        <a data-url="http://pyxixi2012.github.io/2016/07/22/install_flume_kafka_zookeeper_python_docker_desc/" data-id="cir65b4ls000hdk6rluovwfni" class="article-share-link" data-share="baidu" data-title="安装flume zookeeper  kafka python 环境 基于docker image 简单描述">Share</a>
       
 
       
-        <a href="http://pyxixi2012.github.io/2016/07/22/kafka-usage/#disqus_thread" class="article-comment-link">Comments</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kafka/">kafka</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-install_flume_kafka_zookeeper_python_docker" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/22/install_flume_kafka_zookeeper_python_docker/" class="article-date">
-  <time datetime="2016-07-22T06:48:00.000Z" itemprop="datePublished">2016-07-22</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/22/install_flume_kafka_zookeeper_python_docker/">安装flume zookeeper  kafka python 环境 基于docker image</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><ul>
-<li><p><a href="#1">1. install and config docker </a></p>
-<ul>
-<li><p><a href="#1.1">1.1 check cent os 7 kernel version</a></p>
-</li>
-<li><p><a href="#1.2">1.2 config docker env</a></p>
-</li>
-<li><p><a href="#1.3">1.3 Starting and config the Docker daemon</a></p>
-</li>
-</ul>
-</li>
-<li><p><a href="#2">2. create flume docker image </a></p>
-</li>
-<li><p><a href="#3">3. create kafka docker image </a></p>
-<ul>
-<li><p><a href="#3.1">3.1 install kafka without docker </a></p>
-</li>
-<li><p><a href="#3.2">3.2 install kafka with docker </a></p>
-</li>
-</ul>
-</li>
-<li><p><a href="#13">13. dockerfile for flume http agent </a></p>
-</li>
-<li><p><a href="#14">14. config file for flume http agent </a></p>
-</li>
-</ul>
-<h2 id="1"> 1. about docker </h2>
-
-<h5 id="1.1">1.1 check cent os 7 kernel version </h5>
-
-<ol>
-<li><p>check cent os 7 kernel version</p>
-<blockquote>
-<p>uname -r</p>
-</blockquote>
-</li>
-<li><p>upgrade cent os 7</p>
-<blockquote>
-<p>$sudo yum -r update</p>
-</blockquote>
-</li>
-<li><p>mondify net config (aliyun)</p>
-<blockquote>
-<p>$sudo brctl addbr docker0</p>
-<p>$sudo brctl addif docker0 eth0</p>
-<p>$sudo ip link set dev docker0 up</p>
-<p>$sudo ifconfig docker0 172.17.42.1</p>
-</blockquote>
-</li>
-<li><p>install docker</p>
-<blockquote>
-<p>usefull link:</p>
-<p><a href="http://www.widuu.com/chinese_docker/docker-hub/builds.html" target="_blank" rel="external">http://www.widuu.com/chinese_docker/docker-hub/builds.html</a></p>
-<p><a href="http://probablyfine.co.uk/2014/05/05/using-docker-with-apache-flume-1/" target="_blank" rel="external">http://probablyfine.co.uk/2014/05/05/using-docker-with-apache-flume-1/</a></p>
-</blockquote>
-<p>Install with the script</p>
-<p>Log into your machine as a user with sudo or root privileges.</p>
-<p>Make sure your existing yum packages are up-to-date.</p>
-<blockquote>
-<p>$ sudo yum update</p>
-</blockquote>
-<p>Run the Docker installation script.</p>
-<blockquote>
-<p>$ curl -sSL <a href="https://get.docker.com/" target="_blank" rel="external">https://get.docker.com/</a> | sh</p>
-</blockquote>
-<p>This script adds the docker.repo repository and installs Docker.</p>
-<p>Start the Docker daemon.</p>
-<blockquote>
-<p>$ sudo service docker start</p>
-</blockquote>
-<p>Verify docker is installed correctly by running a test image in a container.</p>
-<blockquote>
-<p>$ sudo docker run hello-world</p>
-</blockquote>
-<p>Display docker version</p>
-<blockquote>
-<p>$ sudo docker version</p>
-<p>Client:</p>
-<p>Version:      1.9.1<br>API version:  1.21<br>Go version:   go1.4.2<br>Git commit:   a34a1d5<br>Built:        Fri Nov 20 13:25:01 UTC 2015<br>OS/Arch:      linux/amd64  </p>
-<p>Server:<br> Version:      1.9.1<br>API version:  1.21<br>Go version:   go1.4.2<br>Git commit:   a34a1d5<br>Built:        Fri Nov 20 13:25:01 UTC 2015<br>OS/Arch:      linux/amd64</p>
-</blockquote>
-<p>Create a docker group</p>
-<p>To create the docker group and add your user:</p>
-<p>Log into Centos as a user with sudo privileges.</p>
-<p>Create the docker group and add your user.</p>
-<blockquote>
-<p>$sudo usermod -aG docker yang</p>
-</blockquote>
-<p>Log out and log back in.</p>
-<p>This ensures your user is running with the correct permissions.</p>
-<p>Verify your work by running docker without sudo.</p>
-<blockquote>
-<p>$ sudo docker run hello-world</p>
-<p>$ sudo docker  pull centos</p>
-<p>$sudo docker run -it centos /bin/bash</p>
-</blockquote>
-<p>Start the docker daemon at boot</p>
-<p>To ensure Docker starts when you boot your system, do the following:</p>
-<blockquote>
-<p>$ sudo chkconfig docker on</p>
-</blockquote>
-<p>Enter container shell with exec</p>
-<blockquote>
-<p>$ sudo docker ps<br>$ sudo docker exec -it 069774caa841  /bin/bash</p>
-</blockquote>
-</li>
-<li><p>install docker-compose<br>install docker-compose from curl script ,install lastest version</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">$su -i</div><div class="line"></div><div class="line">$curl -L https://github.com/docker/compose/releases/download/1.5.1/docker-compose-`uname -s`-`uname -m` &gt; /usr/local/bin/docker-compose</div><div class="line"></div><div class="line">#1.6.2</div><div class="line"></div><div class="line">$ curl -L https://github.com/docker/compose/releases/download/1.6.2/run.sh &gt; /usr/local/bin/docker-compose</div><div class="line"></div><div class="line">$chmod +x /usr/local/bin/docker-compose</div><div class="line"></div><div class="line">sudo docker-compose --version</div><div class="line"></div><div class="line">docker-compose version: 1.5.1</div></pre></td></tr></table></figure>
-</li>
-<li><p>uninstal docker</p>
-<p>You can uninstall the Docker software with yum.</p>
-<ul>
-<li><p>List the package you have installed.</p>
-<blockquote>
-<p>$ yum list installed | grep docker  </p>
-<p>docker-engine.x86_64   1.7.1-1.el7 @/docker-engine-1.7.1-1.el7.x86_64.rpm</p>
-</blockquote>
-</li>
-<li><p>Remove the package.</p>
-<blockquote>
-<p>$ sudo yum -y remove docker-engine.x86_64</p>
-<p>This command does not remove images, containers, volumes, or user-created configuration files on your host.</p>
-</blockquote>
-</li>
-<li><p>To delete all images, containers, and volumes, run the following command:</p>
-<blockquote>
-<p>$ rm -rf /var/lib/docker</p>
-<p>Locate and delete any user-created configuration files.</p>
-</blockquote>
-</li>
-</ul>
-</li>
-</ol>
-<h2 id="1-2-config-docker-env"><a href="#1-2-config-docker-env" class="headerlink" title="1.2 config docker env"></a>1.2 config docker env</h2><ol>
-<li><p>配置Docker开机自启动：</p>
-<blockquote>
-<p>$systemctl enable docker.service</p>
-</blockquote>
-<p>If you need to add an HTTP Proxy, set a different directory or partition for the Docker runtime files, or make other customizations, read our Systemd article to learn how to customize your Systemd Docker daemon options.</p>
-</li>
-<li><p>卸载,使用yum卸载Docker。</p>
-<p>列出安装的软件包</p>
-<blockquote>
-<p>$yum list installed | grep docker</p>
-<p>$yum list installed | grep docker</p>
-<p>docker-engine.x86_64             1.8.1-1.el7.centos<br>dockerrepo docker-selinux.x86_64            1.7.1-108.el7.centos   </p>
-</blockquote>
-<p>移除软件包</p>
-<blockquote>
-<p>$ sudo yum -y remove docker-engine.x86_64</p>
-</blockquote>
-<p>上面的命令不会删除镜像，容器，卷组和用户自配置文件。</p>
-<p>删除所有镜像，容器和卷组</p>
-<blockquote>
-<p>$ rm -rf /var/lib/docker</p>
-</blockquote>
-<p>删除用户自配置文件</p>
-</li>
-</ol>
-<h5 id="1.3"> 1.3 Starting and config the Docker daemon </h5>
-
-<ol>
-<li><p>当 Docker 安装完成之后，你需要启动 docker 进程。</p>
-<blockquote>
-<p> $sudo systemctl start docker.service</p>
-</blockquote>
-</li>
-<li><p>如果我们希望 Docker 默认开机启动，如下操作：</p>
-<blockquote>
-<p>$sudo chkconfig docker on</p>
-</blockquote>
-</li>
-<li><p>现在，我们来验证 Docker 是否正常工作。第一步，我们需要下载最新的 centos 镜像。</p>
-<blockquote>
-<p>$sudo docker pull centos</p>
-</blockquote>
-</li>
-<li><p>下一步，我们运行下边的命令来查看镜像，确认镜像是否存在：</p>
-<blockquote>
-<p>$ sudo docker images centos</p>
-</blockquote>
-</li>
-</ol>
-<h2 id="2">2. create flume docker image </h2>
-
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">usefull link :</div><div class="line"></div><div class="line">#Using Docker with Apache Flume - Part 1</div><div class="line">http://segmentfault.com/a/1190000000504942</div><div class="line"></div><div class="line">#config kafk sink with Zookeeper</div><div class="line">http://www.cloudera.com/content/www/en-us/documentation/kafka/latest/topics/kafka_flume.html</div></pre></td></tr></table></figure>
-<ol>
-<li><p>mkdir flume work dir</p>
-<blockquote>
-<p>$mkdir /data/work/app/docker/flume</p>
-</blockquote>
-</li>
-<li><p>create Dockerfile</p>
-<blockquote>
-<p>FROM probablyfine/flume</p>
-<p>ADD ./flume-http.conf /var/tmp/flume-http.conf</p>
-<p>EXPOSE 50004</p>
-<p>ENTRYPOINT [ “flume-ng”, “agent”, “-c”, “/opt/flume/conf”, “-f”, “/var/tmp/flume-http.conf”, “-n”, “a1”, “-Dflume.root.logger=INFO,console” ]</p>
-</blockquote>
-</li>
-<li><p>make flume-http.conf</p>
-<blockquote>
-<p>$cp /home/yang/app/apache-flume-1.6.0-bin/conf/flume-http ./flume-http.conf</p>
-</blockquote>
-</li>
-<li><p>build docker-flume images</p>
-<blockquote>
-<p>$sudo docker build -t zhiguoguo/flume-http .</p>
-</blockquote>
-</li>
-<li><p>display flume-http images</p>
-<blockquote>
-<p>$docker images |grep flume-http</p>
-<p>zhiguoguo/flume-http     latest              d14cf0b3723b        6 minutes ago       418.9 MB</p>
-<p>probablyfine/flume       latest              030613242e61        3 months ago        418.9 MB</p>
-</blockquote>
-</li>
-<li><p>push flume-http to private repository</p>
-<blockquote>
-<p>mark</p>
-</blockquote>
-</li>
-<li><p>run flume-http image</p>
-<blockquote>
-<p>$sudo docker run -d -p 444:50004 -t zhiguoguo/flume-http<br>$sudo docker ps|grep flume-http<br>$sudo docker logs  be7a4c50e159</p>
-</blockquote>
-</li>
-<li><p>stop running container</p>
-<blockquote>
-<p>$ sudo docker stop</p>
-</blockquote>
-</li>
-<li><p>remove images</p>
-<blockquote>
-<p>$ docker rm test_sshd<br>$ docker rmi eg_sshd</p>
-</blockquote>
-</li>
-</ol>
-<h2 id="3">3. create kafka docker image </h2>
-
-<h5 id="3.1">3.1 install kafka without docker </h5>
-
-<p>  1). start zookeeper server at localhost  </p>
-<blockquote>
-<p>$zookeeper-3.4.6/bin/zkServer.sh start</p>
-</blockquote>
-<p>  2). start kafka broker 1  </p>
-<blockquote>
-<p>$bin/kafka-server-start.sh config/server.properties     </p>
-</blockquote>
-<p>  3). create a topic ‘email’  </p>
-<blockquote>
-<p>$bin/kafka-topics.sh –create –zookeeper localhost:2181 –replication-factor 1 –partitions 1 –topic email   </p>
-</blockquote>
-<p>  4). list all kafka topic</p>
-<blockquote>
-<p>$bin/kafka-topics.sh –list –zookeeper localhost:2181</p>
-</blockquote>
-<p>  5). view topic’s properties   </p>
-<blockquote>
-<p>$ bin/kafka-topics.sh –describe –zookeeper localhost:2181 –topic email</p>
-</blockquote>
-<p>  6). begin test kafka cluster broker  ,producers and consumer</p>
-<p>  Created topic “email”, “sms”.  </p>
-<blockquote>
-<p>$ bin/kafka-topics.sh –create –zookeeper localhost:2181 –replication-factor 1 –partitions 1 –topic email</p>
-<p>$ bin/kafka-topics.sh –create –zookeeper localhost:2181 –replication-factor 1 –partitions 1 –topic sms</p>
-</blockquote>
-<p>  view all created topics</p>
-<blockquote>
-<p>$ bin/kafka-topics.sh –list –zookeeper localhost:2181<br>      sms<br>      email<br>      test  </p>
-</blockquote>
-<p>  view email topics properties</p>
-<blockquote>
-<p>$ bin/kafka-topics.sh –describe –zookeeper localhost:2181 –topic email<br>  Topic:email  PartitionCount:1    ReplicationFactor:1 Configs:<br>      Topic: email Partition: 0    Leader: 0   Replicas: 0 Isr: 0  </p>
-</blockquote>
-<p>  producer connect Kafka Broker  to send a test messages</p>
-<blockquote>
-<p>$bin/kafka-console-producer.sh –broker-list 192.168.1.215:9092 –topic email<br>      SLF4J: Failed to load class “org.slf4j.impl.StaticLoggerBinder”.<br>      SLF4J: Defaulting to no-operation (NOP) logger implementation<br>      SLF4J: See <a href="http://www.slf4j.org/codes.html#StaticLoggerBinder" target="_blank" rel="external">http://www.slf4j.org/codes.html#StaticLoggerBinder</a> for further details.<br>      Hello World  </p>
-</blockquote>
-<p>  consumer connect Zookeeper to get messages</p>
-<blockquote>
-<p>$bin/kafka-console-consumer.sh –zookeeper 192.168.1.215:2181 –topic email –from-beginning  </p>
-</blockquote>
-<pre><code>SLF4J: Failed to load class &quot;org.slf4j.impl.StaticLoggerBinder&quot;.  
-SLF4J: Defaulting to no-operation (NOP) logger implementation  
-SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.  
-Hello World
-</code></pre><p>  delete all message in a topic in a kafka cluster env</p>
-<blockquote>
-<p>Tested in Kafka 0.8.2, for the quick-start example: First, Add one line to server.properties file under config folder:</p>
-<blockquote>
-<p>delete.topic.enable=true<br>  then, you can run this command:</p>
-</blockquote>
-<p>bin/kafka-topics.sh –zookeeper localhost:2181 –delete –topic test</p>
-</blockquote>
-<h5 id="3.2">3.2 install kafka with docker </h5>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">usefull link:</div><div class="line"></div><div class="line">#</div><div class="line">http://blog.jaceklaskowski.pl/2015/07/14/apache-kafka-on-docker.html?mkt_tok=3RkMMJWWfF9wsRonuqTMZKXonjHpfsX57ukoWaC0lMI%2F0ER3fOvrPUfGjI4ATctmI%2BSLDwEYGJlv6SgFQ7LMMaZq1rgMXBk%3D</div></pre></td></tr></table></figure>
-<h2 id="13">13. dockerfile for flume http agent</h2>
-
-<pre><code>FROM probablyfine/flume
-
-RUN apt-get update -q
-RUN apt-get install -y telnet
-RUN apt-get install -y curl
-
-ADD ./flume-http.conf /var/tmp/flume-http.conf
-ADD ./flume-ng-mongodb-sink-1.0.0.jar /opt/flume/lib/.
-ADD ./mongo-java-driver-2.13.0.jar /opt/flume/lib/.
-
-EXPOSE 50004
-
-ENTRYPOINT [ &quot;flume-ng&quot;, &quot;agent&quot;, &quot;-c&quot;, &quot;/opt/flume/conf&quot;, &quot;-f&quot;, &quot;/var/tmp/flume-http.conf&quot;, &quot;-n&quot;, &quot;a1&quot;, &quot;-Dflume.root.logger=INFO,console&quot; ]
-</code></pre><h2 id="14">14. config file for flume http agent </h2>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div></pre></td><td class="code"><pre><div class="line">a1.sources = r1</div><div class="line">a1.sinks = k1 k2 k3</div><div class="line">a1.channels = c1 c2 c3</div><div class="line"></div><div class="line">#Describe/configure the source</div><div class="line">a1.sources.r1.type= http</div><div class="line">a1.sources.r1.host = 0.0.0.0</div><div class="line">a1.sources.r1.port= 50004</div><div class="line">a1.sources.r1.channels= c1 c2 c3</div><div class="line">#alex</div><div class="line">a1.sources.r1.selector.type = multiplexing</div><div class="line">a1.sources.r1.selector.header = type</div><div class="line">#映射允许每个值通道可以重叠。默认值可以包含任意数量的通道。</div><div class="line">a1.sources.r1.selector.mapping.applog = c1</div><div class="line">a1.sources.r1.selector.mapping.sms = c2</div><div class="line">a1.sources.r1.selector.mapping.email = c3</div><div class="line">a1.sources.r1.selector.default = c1</div><div class="line"></div><div class="line">#Describe the mongodb sink 1</div><div class="line">a1.sinks.k1.type = org.riderzen.flume.sink.MongoSink</div><div class="line">a1.sinks.k1.host = 192.168.1.215</div><div class="line">a1.sinks.k1.port = 50000</div><div class="line">a1.sinks.k1.model = single</div><div class="line">a1.sinks.k1.db = logdb</div><div class="line">a1.sinks.k1.collection = logtable</div><div class="line">a1.sinks.k1.batch = 100</div><div class="line">a1.sinks.k1.channel = c1</div><div class="line"></div><div class="line">#sink for kafka sms consumer</div><div class="line">a1.sinks.k2.type = org.apache.flume.sink.kafka.KafkaSink</div><div class="line">a1.sinks.k2.topic = sms</div><div class="line">a1.sinks.k2.brokerList = 192.168.1.215:9092</div><div class="line">a1.sinks.k2.requiredAcks = 1</div><div class="line">a1.sinks.k2.batchSize = 20</div><div class="line">a1.sinks.k2.channel = c2</div><div class="line"></div><div class="line">#sink for kafka email consumer</div><div class="line">a1.sinks.k3.type = org.apache.flume.sink.kafka.KafkaSink</div><div class="line">a1.sinks.k3.topic = email</div><div class="line">#config kafka sink to kafka broker directly</div><div class="line">a1.sinks.k3.brokerList = 192.168.1.215:9092</div><div class="line">#config kafka sink to zookeeper cluster</div><div class="line">a1.sinks.k3.zookeeperConnect = 192.168.1.215:2181</div><div class="line">a1.sinks.k3.requiredAcks = 1</div><div class="line">a1.sinks.k3.batchSize = 20</div><div class="line">a1.sinks.k3.channel = c3</div><div class="line"></div><div class="line">#Describe the mongodb sink 2</div><div class="line">#a1.sinks.k2.type = org.riderzen.flume.sink.MongoSink</div><div class="line">#a1.sinks.k2.host = 192.168.1.215</div><div class="line">#a1.sinks.k2.port = 50000</div><div class="line">#a1.sinks.k2.model = single</div><div class="line">#a1.sinks.k2.db = logdb</div><div class="line">#a1.sinks.k2.collection = logtable_1</div><div class="line">#a1.sinks.k2.batch = 100</div><div class="line">#a1.sinks.k2.channel = c2</div><div class="line">##Use a channel which buffers events in memory</div><div class="line">a1.channels.c1.type = memory</div><div class="line">a1.channels.c1.capacity = 1000</div><div class="line">a1.channels.c1.transactionCapacity = 100</div><div class="line">a1.channels.c2.type = memory</div><div class="line">a1.channels.c2.capacity = 1000</div><div class="line">a1.channels.c2.transactionCapacity = 100</div><div class="line">a1.channels.c3.type = memory</div><div class="line">a1.channels.c3.capacity = 1000</div><div class="line">a1.channels.c3.transactionCapacity = 100</div><div class="line"></div><div class="line">#a1.sinks.k2.type = file_roll</div><div class="line">#a1.sinks.k2.sink.directory = /data/work/app/logprog/logs</div><div class="line">#a1.sinks.k2.type = logger</div><div class="line">#a1.sinks.k2.channel = c2</div></pre></td></tr></table></figure>
-<p>export HTTP_PROXY=”<a href="http://192.168.1.234:1080" target="_blank" rel="external">http://192.168.1.234:1080</a>“</p>
-<p>test for preview</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://pyxixi2012.github.io/2016/07/22/install_flume_kafka_zookeeper_python_docker/" data-id="cir5vy6jx0006ps6r8nf0s1cz" class="article-share-link" data-share="baidu" data-title="安装flume zookeeper  kafka python 环境 基于docker image">Share</a>
-      
-
-      
-        <a href="http://pyxixi2012.github.io/2016/07/22/install_flume_kafka_zookeeper_python_docker/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://pyxixi2012.github.io/2016/07/22/install_flume_kafka_zookeeper_python_docker_desc/#disqus_thread" class="article-comment-link">Comments</a>
       
 
       
@@ -588,7 +381,7 @@ ENTRYPOINT [ &quot;flume-ng&quot;, &quot;agent&quot;, &quot;-c&quot;, &quot;/opt
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/atom/">atom</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/post/">post</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/atom/">atom</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/post/">post</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -597,7 +390,7 @@ ENTRYPOINT [ &quot;flume-ng&quot;, &quot;agent&quot;, &quot;-c&quot;, &quot;/opt
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Development/">Development</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unbuntu/">Unbuntu</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angularjs/">angularjs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/atom/">atom</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chrome/">chrome</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flume/">flume</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/frontend/">frontend</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kafka/">kafka</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spark/">spark</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zookeeper/">zookeeper</a><span class="tag-list-count">3</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Development/">Development</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ElasticSearch/">ElasticSearch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/">MongoDB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unbuntu/">Unbuntu</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angularjs/">angularjs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/atom/">atom</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chrome/">chrome</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flume/">flume</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/frontend/">frontend</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kafka/">kafka</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spark/">spark</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zookeeper/">zookeeper</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -606,7 +399,7 @@ ENTRYPOINT [ &quot;flume-ng&quot;, &quot;agent&quot;, &quot;-c&quot;, &quot;/opt
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Development/" style="font-size: 10px;">Development</a> <a href="/tags/Unbuntu/" style="font-size: 10px;">Unbuntu</a> <a href="/tags/angularjs/" style="font-size: 10px;">angularjs</a> <a href="/tags/atom/" style="font-size: 10px;">atom</a> <a href="/tags/chrome/" style="font-size: 10px;">chrome</a> <a href="/tags/docker/" style="font-size: 18px;">docker</a> <a href="/tags/flume/" style="font-size: 12px;">flume</a> <a href="/tags/frontend/" style="font-size: 10px;">frontend</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/kafka/" style="font-size: 14px;">kafka</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/python/" style="font-size: 16px;">python</a> <a href="/tags/spark/" style="font-size: 10px;">spark</a> <a href="/tags/zookeeper/" style="font-size: 12px;">zookeeper</a>
+      <a href="/tags/Development/" style="font-size: 10px;">Development</a> <a href="/tags/ElasticSearch/" style="font-size: 10px;">ElasticSearch</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/Unbuntu/" style="font-size: 10px;">Unbuntu</a> <a href="/tags/angularjs/" style="font-size: 10px;">angularjs</a> <a href="/tags/atom/" style="font-size: 10px;">atom</a> <a href="/tags/chrome/" style="font-size: 10px;">chrome</a> <a href="/tags/docker/" style="font-size: 18px;">docker</a> <a href="/tags/flume/" style="font-size: 12px;">flume</a> <a href="/tags/frontend/" style="font-size: 10px;">frontend</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/kafka/" style="font-size: 14px;">kafka</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/python/" style="font-size: 16px;">python</a> <a href="/tags/spark/" style="font-size: 10px;">spark</a> <a href="/tags/zookeeper/" style="font-size: 12px;">zookeeper</a>
     </div>
   </div>
 
@@ -615,7 +408,7 @@ ENTRYPOINT [ &quot;flume-ng&quot;, &quot;agent&quot;, &quot;-c&quot;, &quot;/opt
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">13</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">14</span></li></ul>
     </div>
   </div>
 
@@ -631,6 +424,10 @@ ENTRYPOINT [ &quot;flume-ng&quot;, &quot;agent&quot;, &quot;-c&quot;, &quot;/opt
           </li>
         
           <li>
+            <a href="/2016/07/27/Setting up ElasticSearch with MongoDB/">Setting up ElasticSearch with MongoDB</a>
+          </li>
+        
+          <li>
             <a href="/2016/07/25/test-my-categories/">test my categories</a>
           </li>
         
@@ -640,10 +437,6 @@ ENTRYPOINT [ &quot;flume-ng&quot;, &quot;agent&quot;, &quot;-c&quot;, &quot;/opt
         
           <li>
             <a href="/2016/07/23/2016/Install atom plugin -- markdown writer/">Install atom plugin -- markdown writer</a>
-          </li>
-        
-          <li>
-            <a href="/2016/07/23/学习Hexo，搭建一个git-pages的博客/">学习Hexo，搭建一个git pages的博客</a>
           </li>
         
       </ul>
