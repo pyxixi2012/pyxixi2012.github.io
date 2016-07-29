@@ -38,7 +38,7 @@
 2. create flume docker image 
 
 3. create kafka docker image">
-<meta property="og:updated_time" content="2016-07-23T02:33:43.382Z">
+<meta property="og:updated_time" content="2016-07-29T01:52:48.401Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安装flume zookeeper  kafka python 环境 基于docker image">
 <meta name="twitter:description" content="目录
@@ -117,6 +117,10 @@
   <time datetime="2016-07-22T06:48:00.000Z" itemprop="datePublished">2016-07-22</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/post/">post</a>►<a class="article-category-link" href="/categories/post/learning/">learning</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -211,7 +215,7 @@
 <blockquote>
 <p>$ sudo docker version</p>
 <p>Client:</p>
-<p>Version:      1.9.1<br>API version:  1.21<br>Go version:   go1.4.2<br>Git commit:   a34a1d5<br>Built:        Fri Nov 20 13:25:01 UTC 2015<br>OS/Arch:      linux/amd64  </p>
+<p>Version:      1.9.1<br>API version:  1.21<br>Go version:   go1.4.2<br>Git commit:   a34a1d5<br>Built:        Fri Nov 20 13:25:01 UTC 2015<br>OS/Arch:      linux/amd64</p>
 <p>Server:<br> Version:      1.9.1<br>API version:  1.21<br>Go version:   go1.4.2<br>Git commit:   a34a1d5<br>Built:        Fri Nov 20 13:25:01 UTC 2015<br>OS/Arch:      linux/amd64</p>
 </blockquote>
 <p>Create a docker group</p>
@@ -247,7 +251,7 @@
 <ul>
 <li><p>List the package you have installed.</p>
 <blockquote>
-<p>$ yum list installed | grep docker  </p>
+<p>$ yum list installed | grep docker</p>
 <p>docker-engine.x86_64   1.7.1-1.el7 @/docker-engine-1.7.1-1.el7.x86_64.rpm</p>
 </blockquote>
 </li>
@@ -278,7 +282,7 @@
 <blockquote>
 <p>$yum list installed | grep docker</p>
 <p>$yum list installed | grep docker</p>
-<p>docker-engine.x86_64             1.8.1-1.el7.centos<br>dockerrepo docker-selinux.x86_64            1.7.1-108.el7.centos   </p>
+<p>docker-engine.x86_64             1.8.1-1.el7.centos<br>dockerrepo docker-selinux.x86_64            1.7.1-108.el7.centos</p>
 </blockquote>
 <p>移除软件包</p>
 <blockquote>
@@ -375,51 +379,51 @@
 
 <h5 id="3.1">3.1 install kafka without docker </h5>
 
-<p>  1). start zookeeper server at localhost  </p>
+<p>  1). start zookeeper server at localhost</p>
 <blockquote>
 <p>$zookeeper-3.4.6/bin/zkServer.sh start</p>
 </blockquote>
-<p>  2). start kafka broker 1  </p>
+<p>  2). start kafka broker 1</p>
 <blockquote>
-<p>$bin/kafka-server-start.sh config/server.properties     </p>
+<p>$bin/kafka-server-start.sh config/server.properties</p>
 </blockquote>
-<p>  3). create a topic ‘email’  </p>
+<p>  3). create a topic ‘email’</p>
 <blockquote>
-<p>$bin/kafka-topics.sh –create –zookeeper localhost:2181 –replication-factor 1 –partitions 1 –topic email   </p>
+<p>$bin/kafka-topics.sh –create –zookeeper localhost:2181 –replication-factor 1 –partitions 1 –topic email</p>
 </blockquote>
 <p>  4). list all kafka topic</p>
 <blockquote>
 <p>$bin/kafka-topics.sh –list –zookeeper localhost:2181</p>
 </blockquote>
-<p>  5). view topic’s properties   </p>
+<p>  5). view topic’s properties</p>
 <blockquote>
 <p>$ bin/kafka-topics.sh –describe –zookeeper localhost:2181 –topic email</p>
 </blockquote>
 <p>  6). begin test kafka cluster broker  ,producers and consumer</p>
-<p>  Created topic “email”, “sms”.  </p>
+<p>  Created topic “email”, “sms”.</p>
 <blockquote>
 <p>$ bin/kafka-topics.sh –create –zookeeper localhost:2181 –replication-factor 1 –partitions 1 –topic email</p>
 <p>$ bin/kafka-topics.sh –create –zookeeper localhost:2181 –replication-factor 1 –partitions 1 –topic sms</p>
 </blockquote>
 <p>  view all created topics</p>
 <blockquote>
-<p>$ bin/kafka-topics.sh –list –zookeeper localhost:2181<br>      sms<br>      email<br>      test  </p>
+<p>$ bin/kafka-topics.sh –list –zookeeper localhost:2181<br>      sms<br>      email<br>      test</p>
 </blockquote>
 <p>  view email topics properties</p>
 <blockquote>
-<p>$ bin/kafka-topics.sh –describe –zookeeper localhost:2181 –topic email<br>  Topic:email  PartitionCount:1    ReplicationFactor:1 Configs:<br>      Topic: email Partition: 0    Leader: 0   Replicas: 0 Isr: 0  </p>
+<p>$ bin/kafka-topics.sh –describe –zookeeper localhost:2181 –topic email<br>  Topic:email  PartitionCount:1    ReplicationFactor:1 Configs:<br>      Topic: email Partition: 0    Leader: 0   Replicas: 0 Isr: 0</p>
 </blockquote>
 <p>  producer connect Kafka Broker  to send a test messages</p>
 <blockquote>
-<p>$bin/kafka-console-producer.sh –broker-list 192.168.1.215:9092 –topic email<br>      SLF4J: Failed to load class “org.slf4j.impl.StaticLoggerBinder”.<br>      SLF4J: Defaulting to no-operation (NOP) logger implementation<br>      SLF4J: See <a href="http://www.slf4j.org/codes.html#StaticLoggerBinder" target="_blank" rel="external">http://www.slf4j.org/codes.html#StaticLoggerBinder</a> for further details.<br>      Hello World  </p>
+<p>$bin/kafka-console-producer.sh –broker-list 192.168.1.215:9092 –topic email<br>      SLF4J: Failed to load class “org.slf4j.impl.StaticLoggerBinder”.<br>      SLF4J: Defaulting to no-operation (NOP) logger implementation<br>      SLF4J: See <a href="http://www.slf4j.org/codes.html#StaticLoggerBinder" target="_blank" rel="external">http://www.slf4j.org/codes.html#StaticLoggerBinder</a> for further details.<br>      Hello World</p>
 </blockquote>
 <p>  consumer connect Zookeeper to get messages</p>
 <blockquote>
-<p>$bin/kafka-console-consumer.sh –zookeeper 192.168.1.215:2181 –topic email –from-beginning  </p>
+<p>$bin/kafka-console-consumer.sh –zookeeper 192.168.1.215:2181 –topic email –from-beginning</p>
 </blockquote>
-<pre><code>SLF4J: Failed to load class &quot;org.slf4j.impl.StaticLoggerBinder&quot;.  
-SLF4J: Defaulting to no-operation (NOP) logger implementation  
-SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.  
+<pre><code>SLF4J: Failed to load class &quot;org.slf4j.impl.StaticLoggerBinder&quot;.
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
 Hello World
 </code></pre><p>  delete all message in a topic in a kafka cluster env</p>
 <blockquote>
@@ -457,7 +461,7 @@ ENTRYPOINT [ &quot;flume-ng&quot;, &quot;agent&quot;, &quot;-c&quot;, &quot;/opt
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://pyxixi2012.github.io/2016/07/22/install_flume_kafka_zookeeper_python_docker/" data-id="cir65b4lq000edk6r87edsckv" class="article-share-link" data-share="baidu" data-title="安装flume zookeeper  kafka python 环境 基于docker image">Share</a>
+        <a data-url="http://pyxixi2012.github.io/2016/07/22/install_flume_kafka_zookeeper_python_docker/" data-id="cir73h2jc000bra6r8j76udpg" class="article-share-link" data-share="baidu" data-title="安装flume zookeeper  kafka python 环境 基于docker image">Share</a>
       
 
       
@@ -473,19 +477,19 @@ ENTRYPOINT [ &quot;flume-ng&quot;, &quot;agent&quot;, &quot;-c&quot;, &quot;/opt
     
 <nav id="article-nav">
   
-    <a href="/2016/07/22/kafka-docker-usage/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/07/22/install-pyxixi2012-blog/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          kafka with docker 常用命令
+          Create a blog on github
         
       </div>
     </a>
   
   
-    <a href="/2016/07/22/install-pyxixi2012-blog/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/07/22/install-flume-with-docker/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Create a blog on github</div>
+      <div class="article-nav-title">安装Flume docker image</div>
     </a>
   
 </nav>
@@ -507,7 +511,7 @@ ENTRYPOINT [ &quot;flume-ng&quot;, &quot;agent&quot;, &quot;-c&quot;, &quot;/opt
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/atom/">atom</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/post/">post</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/atom/">atom</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/post/">post</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/post/learning/">learning</a><span class="category-list-count">9</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -534,7 +538,7 @@ ENTRYPOINT [ &quot;flume-ng&quot;, &quot;agent&quot;, &quot;-c&quot;, &quot;/opt
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">14</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">13</span></li></ul>
     </div>
   </div>
 
@@ -546,15 +550,11 @@ ENTRYPOINT [ &quot;flume-ng&quot;, &quot;agent&quot;, &quot;-c&quot;, &quot;/opt
       <ul>
         
           <li>
-            <a href="/2016/07/27/JavaScript-Development-Environment/">JavaScript Development Environment</a>
-          </li>
-        
-          <li>
             <a href="/2016/07/27/Setting up ElasticSearch with MongoDB/">Setting up ElasticSearch with MongoDB</a>
           </li>
         
           <li>
-            <a href="/2016/07/25/test-my-categories/">test my categories</a>
+            <a href="/2016/07/27/JavaScript-Development-Environment/">JavaScript Development Environment</a>
           </li>
         
           <li>
@@ -563,6 +563,10 @@ ENTRYPOINT [ &quot;flume-ng&quot;, &quot;agent&quot;, &quot;-c&quot;, &quot;/opt
         
           <li>
             <a href="/2016/07/23/2016/Install atom plugin -- markdown writer/">Install atom plugin -- markdown writer</a>
+          </li>
+        
+          <li>
+            <a href="/2016/07/23/学习Hexo，搭建一个git-pages的博客/">学习Hexo，搭建一个git pages的博客</a>
           </li>
         
       </ul>
