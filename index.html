@@ -75,6 +75,108 @@
     <div class="outer">
       <section id="main">
   
+    <article id="post-use-Yeoman-make-a-webapp-part-2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/02/use-Yeoman-make-a-webapp-part-2/" class="article-date">
+  <time datetime="2016-08-02T12:27:01.000Z" itemprop="datePublished">2016-08-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/post/">post</a>►<a class="article-category-link" href="/categories/post/web-development/">web development</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/02/use-Yeoman-make-a-webapp-part-2/">use Yeoman make a webapp part 2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong><em>use Yeoman part 2</em></strong></p>
+<p><strong><em>links </em></strong></p>
+<ul>
+<li><a href="https://github.com/yeoman/generator-angular#readme" target="_blank" rel="external">https://github.com/yeoman/generator-angular#readme</a></li>
+<li><a href="https://www.npmjs.com/package/generator-angular-fullstack" target="_blank" rel="external">https://www.npmjs.com/package/generator-angular-fullstack</a></li>
+<li><a href="https://www.airpair.com/js/using-angularjs-yeoman" target="_blank" rel="external">https://www.airpair.com/js/using-angularjs-yeoman</a></li>
+<li><a href="https://www.sitepoint.com/kickstart-your-angularjs-development-with-yeoman-grunt-and-bower/" target="_blank" rel="external">https://www.sitepoint.com/kickstart-your-angularjs-development-with-yeoman-grunt-and-bower/</a></li>
+<li><a href="http://jjt.io/2013/11/14/easy-angular-development-yeoman-generator-angular/" target="_blank" rel="external">http://jjt.io/2013/11/14/easy-angular-development-yeoman-generator-angular/</a></li>
+</ul>
+<p><strong><em>AngularJS Full-Stack generator</em></strong></p>
+<ul>
+<li><p>Install Yeoman</p>
+<blockquote>
+<p>$ npm install -g yo gulp-cli generator-angular-fullstack</p>
+<p><code>To install the latest 4.0.0 Beta with Webpack support, use generator-angular-fullstack@beta</code></p>
+</blockquote>
+</li>
+<li><p>Make a new directory, and cd into it:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ mkdir my-new-project &amp;&amp; cd $_</div><div class="line">Run yo angular-fullstack, optionally passing an app name:</div><div class="line"></div><div class="line">$ yo angular-fullstack [app-name]</div><div class="line">Run gulp build for building, gulp serve for development, and gulp serve:dist for a preview of the built app.</div></pre></td></tr></table></figure>
+</li>
+<li><p>Prerequisites</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">MongoDB - Download and Install MongoDB - If you plan on scaffolding your project with mongoose, you&apos;ll need mongoDB to be installed and have the mongod process running.</div><div class="line">The project&apos;s JavaScript is written in ECMAScript 2015. If you&apos;re unfamiliar with the latest changes to the specification for JavaScript, check out http://es6-features.org/</div></pre></td></tr></table></figure>
+</li>
+<li><p>Supported Configurations</p>
+<p><strong><em>General</em></strong></p>
+<ul>
+<li>Build Systems: Gulp</li>
+<li>Testing:<ul>
+<li>Jasmine</li>
+<li>Mocha + Chai + Sinon</li>
+<li>Chai assertions:</li>
+<li>Expect</li>
+<li>Should<br><strong><em>Client</em></strong></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>Scripts: JavaScript (Babel), TypeScript</li>
+<li>Module Systems: Bower, Webpack (soon), SystemJS + JSPM (planned)</li>
+<li>Markup: HTML, Jade</li>
+<li>Stylesheets: CSS, Stylus, Sass, Less</li>
+<li>Angular Routers: ngRoute, ui-router</li>
+<li>CSS Frameworks: Bootstrap<ul>
+<li>Option to include UI Bootstrap</li>
+</ul>
+</li>
+</ul>
+<p><strong><em>Server</em></strong></p>
+<p>Scripts: JavaScript (Babel), TypeScript (planned)<br>Database:<br>  None,<br>  MongoDB, SQL<br>  Authentication boilerplate: Yes, No<br>  oAuth integrations: Facebook Twitter Google<br>  Socket.io integration: Yes, No</p>
+<p><strong><em>Generators</em></strong></p>
+<p><strong>Available generators:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">App</div><div class="line">  angular-fullstack (aka angular-fullstack:app)</div><div class="line">Server Side</div><div class="line">  angular-fullstack:endpoint</div><div class="line">  Client Side</div><div class="line">  angular-fullstack:route</div><div class="line">  angular-fullstack:component</div><div class="line">  angular-fullstack:controller</div><div class="line">  angular-fullstack:filter</div><div class="line">  angular-fullstack:directive</div><div class="line">  angular-fullstack:service</div><div class="line">  angular-fullstack:provider</div><div class="line">  angular-fullstack:factory</div><div class="line">  angular-fullstack:decorator</div><div class="line">Deployment</div><div class="line">  angular-fullstack:openshift</div><div class="line">  angular-fullstack:heroku</div></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://pyxixi2012.github.io/2016/08/02/use-Yeoman-make-a-webapp-part-2/" data-id="cirdhf40a000o8u6rznz6f6dk" class="article-share-link" data-share="baidu" data-title="use Yeoman make a webapp part 2">Share</a>
+      
+
+      
+        <a href="http://pyxixi2012.github.io/2016/08/02/use-Yeoman-make-a-webapp-part-2/#disqus_thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angularjs/">angularjs</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-make-angularjs-project-struct" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/07/30/make-angularjs-project-struct/" class="article-date">
@@ -101,7 +203,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong><em>use Yeoman </em></strong></p>
+        <p><strong><em>use Yeoman part 1</em></strong></p>
 <p><strong><em>links </em></strong></p>
 <ul>
 <li><a href="https://github.com/yeoman/generator-angular#readme" target="_blank" rel="external">https://github.com/yeoman/generator-angular#readme</a></li>
@@ -138,7 +240,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://pyxixi2012.github.io/2016/07/30/make-angularjs-project-struct/" data-id="cirbkm1fy000y5d6rbb0dwpkc" class="article-share-link" data-share="baidu" data-title="make angularjs project struct">Share</a>
+        <a data-url="http://pyxixi2012.github.io/2016/07/30/make-angularjs-project-struct/" data-id="cirdhf40c000p8u6rlnndgb95" class="article-share-link" data-share="baidu" data-title="make angularjs project struct">Share</a>
       
 
       
@@ -190,7 +292,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://pyxixi2012.github.io/2016/07/30/Faqs-perl-local-error-on-ubuntu-16/" data-id="cirbkm1ex00005d6rq1xxz6v6" class="article-share-link" data-share="baidu" data-title="Faqs: perl local error on ubuntu 16">Share</a>
+        <a data-url="http://pyxixi2012.github.io/2016/07/30/Faqs-perl-local-error-on-ubuntu-16/" data-id="cirdhf3zb00018u6r0x64z88b" class="article-share-link" data-share="baidu" data-title="Faqs: perl local error on ubuntu 16">Share</a>
       
 
       
@@ -238,7 +340,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://pyxixi2012.github.io/2016/07/29/Anularjs-first-project/" data-id="cirbkm1fd00085d6r232qkt9j" class="article-share-link" data-share="baidu" data-title="Anularjs: first project">Share</a>
+        <a data-url="http://pyxixi2012.github.io/2016/07/29/Anularjs-first-project/" data-id="cirdhf3z600008u6ra42ieqkp" class="article-share-link" data-share="baidu" data-title="Anularjs: first project">Share</a>
       
 
       
@@ -351,7 +453,7 @@ Got 1 Hits:
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://pyxixi2012.github.io/2016/07/27/Setting up ElasticSearch with MongoDB/" data-id="cirbkm1fg000a5d6r9qdrpki3" class="article-share-link" data-share="baidu" data-title="Setting up ElasticSearch with MongoDB">Share</a>
+        <a data-url="http://pyxixi2012.github.io/2016/07/27/Setting up ElasticSearch with MongoDB/" data-id="cirdhf3zj00058u6rux34tmp8" class="article-share-link" data-share="baidu" data-title="Setting up ElasticSearch with MongoDB">Share</a>
       
 
       
@@ -432,7 +534,7 @@ Got 1 Hits:
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://pyxixi2012.github.io/2016/07/27/JavaScript-Development-Environment/" data-id="cirbkm1fa00065d6rmz8s1nzz" class="article-share-link" data-share="baidu" data-title="JavaScript Development Environment">Share</a>
+        <a data-url="http://pyxixi2012.github.io/2016/07/27/JavaScript-Development-Environment/" data-id="cirdhf3zi00048u6r6nwsc0x7" class="article-share-link" data-share="baidu" data-title="JavaScript Development Environment">Share</a>
       
 
       
@@ -502,7 +604,7 @@ Got 1 Hits:
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://pyxixi2012.github.io/2016/07/23/Install-chrome-on-Unbuntu-16/" data-id="cirbkm1f200025d6rk9seqsae" class="article-share-link" data-share="baidu" data-title="Install chrome on Unbuntu 16 ">Share</a>
+        <a data-url="http://pyxixi2012.github.io/2016/07/23/Install-chrome-on-Unbuntu-16/" data-id="cirdhf3zz000e8u6rrz7jbvy8" class="article-share-link" data-share="baidu" data-title="Install chrome on Unbuntu 16 ">Share</a>
       
 
       
@@ -571,7 +673,7 @@ Got 1 Hits:
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://pyxixi2012.github.io/2016/07/23/2016/Install atom plugin -- markdown writer/" data-id="cirbkm1hg00465d6ryirk4te5" class="article-share-link" data-share="baidu" data-title="Install atom plugin -- markdown writer">Share</a>
+        <a data-url="http://pyxixi2012.github.io/2016/07/23/2016/Install atom plugin -- markdown writer/" data-id="cirdhf42c00468u6rc7u3dtm1" class="article-share-link" data-share="baidu" data-title="Install atom plugin -- markdown writer">Share</a>
       
 
       
@@ -628,7 +730,7 @@ Got 1 Hits:
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://pyxixi2012.github.io/2016/07/23/学习Hexo，搭建一个git-pages的博客/" data-id="cirbkm1fz00105d6roneuehb1" class="article-share-link" data-share="baidu" data-title="学习Hexo，搭建一个git pages的博客">Share</a>
+        <a data-url="http://pyxixi2012.github.io/2016/07/23/学习Hexo，搭建一个git-pages的博客/" data-id="cirdhf40q000u8u6rtt0jz97j" class="article-share-link" data-share="baidu" data-title="学习Hexo，搭建一个git pages的博客">Share</a>
       
 
       
@@ -739,7 +841,7 @@ Got 1 Hits:
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://pyxixi2012.github.io/2016/07/22/install_docker_spark/" data-id="cirbkm1fl000h5d6rg3zfkdfl" class="article-share-link" data-share="baidu" data-title="Install spark 1.6.0 with docker">Share</a>
+        <a data-url="http://pyxixi2012.github.io/2016/07/22/install_docker_spark/" data-id="cirdhf401000f8u6rpmusmnrg" class="article-share-link" data-share="baidu" data-title="Install spark 1.6.0 with docker">Share</a>
       
 
       
@@ -748,77 +850,6 @@ Got 1 Hits:
 
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spark/">spark</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-kafka-docker-usage" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/22/kafka-docker-usage/" class="article-date">
-  <time datetime="2016-07-22T11:48:00.000Z" itemprop="datePublished">2016-07-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/post/">post</a>►<a class="article-category-link" href="/categories/post/learning/">learning</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/22/kafka-docker-usage/">kafka with docker 常用命令</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="kafka-docker"><a href="#kafka-docker" class="headerlink" title="kafka-docker"></a>kafka-docker</h1><p>Dockerfile for <a href="http://kafka.apache.org/" target="_blank" rel="external">Apache Kafka</a></p>
-<p>The image is available directly from <a href="https://registry.hub.docker.com/" target="_blank" rel="external">https://registry.hub.docker.com/</a></p>
-<h2 id="Pre-Requisites"><a href="#Pre-Requisites" class="headerlink" title="Pre-Requisites"></a>Pre-Requisites</h2><ul>
-<li>install docker-compose <a href="https://docs.docker.com/compose/install/" target="_blank" rel="external">https://docs.docker.com/compose/install/</a></li>
-<li>modify the <figure class="highlight plain"><figcaption><span>in ```docker-compose.yml``` to match your docker host IP (Note: Do not use localhost or 127.0.0.1 as the host ip if you want to run multiple brokers.)</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- if you want to customise any Kafka parameters, simply add them as environment variables in ```docker-compose.yml```, e.g. in order to increase the ```message.max.bytes``` parameter set the environment to ```KAFKA_MESSAGE_MAX_BYTES: 2000000```. To turn off automatic topic creation set ```KAFKA_AUTO_CREATE_TOPICS_ENABLE: &apos;false&apos;</div></pre></td></tr></table></figure></li>
-</ul>
-<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><p>Start a cluster:</p>
-<ul>
-<li><figure class="highlight plain"><figcaption><span>up -d ```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">Add more brokers:</div><div class="line"></div><div class="line">- ```docker-compose scale kafka=3</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>Destroy a cluster:</p>
-<ul>
-<li><figure class="highlight plain"><figcaption><span>stop```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## Note</div><div class="line"></div><div class="line">The default ```docker-compose.yml``` should be seen as a starting point. By default each broker will get a new port number and broker id on restart. Depending on your use case this might not be desirable. If you need to use specific ports and broker ids, modify the docker-compose configuration accordingly, e.g. [docker-compose-single-broker.yml](https://github.com/wurstmeister/kafka-docker/blob/master/docker-compose-single-broker.yml):</div><div class="line"></div><div class="line">- ```docker-compose -f docker-compose-single-broker.yml up</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="Broker-IDs"><a href="#Broker-IDs" class="headerlink" title="Broker IDs"></a>Broker IDs</h2><p>If you don’t specify a broker id in your docker-compose file, it will automatically be generated based on the name that docker-compose gives the container. This allows scaling up and down. In this case it is recommended to use the <code>--no-recreate</code> option of docker-compose to ensure that containers are not re-created and thus keep their names and ids.</p>
-<h2 id="Automatically-create-topics"><a href="#Automatically-create-topics" class="headerlink" title="Automatically create topics"></a>Automatically create topics</h2><p>If you want to have kafka-docker automatically create topics in Kafka during<br>creation, a <code>KAFKA_CREATE_TOPICS</code> environment variable can be<br>added in <code>docker-compose.yml</code>.</p>
-<p>Here is an example snippet from <code>docker-compose.yml</code>:</p>
-<pre><code>environment:
-  KAFKA_CREATE_TOPICS: &quot;Topic1:1:3,Topic2:1:1&quot;
-</code></pre><p><code>Topic 1</code> will have 1 partition and 3 replicas, <code>Topic 2</code> will have 1 partition and 1 replica.</p>
-<h2 id="Tutorial"><a href="#Tutorial" class="headerlink" title="Tutorial"></a>Tutorial</h2><p><a href="http://wurstmeister.github.io/kafka-docker/" target="_blank" rel="external">http://wurstmeister.github.io/kafka-docker/</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://pyxixi2012.github.io/2016/07/22/kafka-docker-usage/" data-id="cirbkm1fw000r5d6r4frvdgj6" class="article-share-link" data-share="baidu" data-title="kafka with docker 常用命令">Share</a>
-      
-
-      
-        <a href="http://pyxixi2012.github.io/2016/07/22/kafka-docker-usage/#disqus_thread" class="article-comment-link">Comments</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kafka/">kafka</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
 
     </footer>
   </div>
@@ -855,7 +886,7 @@ Got 1 Hits:
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/atom/">atom</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/post/">post</a><span class="category-list-count">12</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/post/Faqs/">Faqs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/post/learning/">learning</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/post/web-development/">web development</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/atom/">atom</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/post/">post</a><span class="category-list-count">13</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/post/Faqs/">Faqs</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/post/learning/">learning</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/post/web-development/">web development</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/web/">web</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -864,7 +895,7 @@ Got 1 Hits:
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Development/">Development</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ElasticSearch/">ElasticSearch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Faqs/">Faqs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/">MongoDB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unbuntu/">Unbuntu</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angularjs/">angularjs</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/atom/">atom</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chrome/">chrome</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flume/">flume</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/frontend/">frontend</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kafka/">kafka</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spark/">spark</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zookeeper/">zookeeper</a><span class="tag-list-count">3</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Development/">Development</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ElasticSearch/">ElasticSearch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Faqs/">Faqs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/">MongoDB</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Unbuntu/">Unbuntu</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/angularjs/">angularjs</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/atom/">atom</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/chrome/">chrome</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/">docker</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flume/">flume</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/frontend/">frontend</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kafka/">kafka</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/markdown/">markdown</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/">nodejs</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spark/">spark</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ubuntu/">ubuntu</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/zookeeper/">zookeeper</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -873,7 +904,7 @@ Got 1 Hits:
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Development/" style="font-size: 10px;">Development</a> <a href="/tags/ElasticSearch/" style="font-size: 10px;">ElasticSearch</a> <a href="/tags/Faqs/" style="font-size: 10px;">Faqs</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/Unbuntu/" style="font-size: 10px;">Unbuntu</a> <a href="/tags/angularjs/" style="font-size: 12px;">angularjs</a> <a href="/tags/atom/" style="font-size: 10px;">atom</a> <a href="/tags/chrome/" style="font-size: 10px;">chrome</a> <a href="/tags/docker/" style="font-size: 18px;">docker</a> <a href="/tags/flume/" style="font-size: 12px;">flume</a> <a href="/tags/frontend/" style="font-size: 10px;">frontend</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/kafka/" style="font-size: 14px;">kafka</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/python/" style="font-size: 16px;">python</a> <a href="/tags/spark/" style="font-size: 10px;">spark</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/zookeeper/" style="font-size: 12px;">zookeeper</a>
+      <a href="/tags/Development/" style="font-size: 10px;">Development</a> <a href="/tags/ElasticSearch/" style="font-size: 10px;">ElasticSearch</a> <a href="/tags/Faqs/" style="font-size: 10px;">Faqs</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/Unbuntu/" style="font-size: 10px;">Unbuntu</a> <a href="/tags/angularjs/" style="font-size: 13.33px;">angularjs</a> <a href="/tags/atom/" style="font-size: 10px;">atom</a> <a href="/tags/chrome/" style="font-size: 10px;">chrome</a> <a href="/tags/docker/" style="font-size: 18.33px;">docker</a> <a href="/tags/flume/" style="font-size: 11.67px;">flume</a> <a href="/tags/frontend/" style="font-size: 10px;">frontend</a> <a href="/tags/git/" style="font-size: 20px;">git</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/kafka/" style="font-size: 15px;">kafka</a> <a href="/tags/markdown/" style="font-size: 10px;">markdown</a> <a href="/tags/nodejs/" style="font-size: 10px;">nodejs</a> <a href="/tags/python/" style="font-size: 16.67px;">python</a> <a href="/tags/spark/" style="font-size: 10px;">spark</a> <a href="/tags/ubuntu/" style="font-size: 10px;">ubuntu</a> <a href="/tags/zookeeper/" style="font-size: 11.67px;">zookeeper</a>
     </div>
   </div>
 
@@ -882,7 +913,7 @@ Got 1 Hits:
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">16</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a><span class="archive-list-count">16</span></li></ul>
     </div>
   </div>
 
@@ -901,6 +932,10 @@ Got 1 Hits:
       <ul>
         
           <li>
+            <a href="/2016/08/02/use-Yeoman-make-a-webapp-part-2/">use Yeoman make a webapp part 2</a>
+          </li>
+        
+          <li>
             <a href="/2016/07/30/make-angularjs-project-struct/">make angularjs project struct</a>
           </li>
         
@@ -914,10 +949,6 @@ Got 1 Hits:
         
           <li>
             <a href="/2016/07/27/Setting up ElasticSearch with MongoDB/">Setting up ElasticSearch with MongoDB</a>
-          </li>
-        
-          <li>
-            <a href="/2016/07/27/JavaScript-Development-Environment/">JavaScript Development Environment</a>
           </li>
         
       </ul>
