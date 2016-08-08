@@ -6,25 +6,25 @@
   
   <title>ssh 端口转发范例 | 流光-岁月</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="** 应用场景
+  <meta name="description" content="**应用场景
 1需要通过一个堡垒机跳转到另外一个专用网络的http服务 ，kylin ，在mac上使用ssh client 进行端口转发
-** 命令参考
-1234567$ ssh -L &amp;lt;local port&amp;gt;:&amp;lt;remote host&amp;gt;:&amp;lt;remote port&amp;gt; &amp;lt;SSH hostname&amp;gt;实际命令：$ ssh  -D -N -L 7070:1">
+**命令参考
+1234567$ ssh -L &amp;lt;local port&amp;gt;:&amp;lt;remote host&amp;gt;:&amp;lt;remote port&amp;gt; &amp;lt;SSH hostname&amp;gt;实际命令：$ ssh  -D -N -L 7070:172">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ssh 端口转发范例">
 <meta property="og:url" content="http://pyxixi2012.github.io/2016/08/08/post/index.html">
 <meta property="og:site_name" content="流光-岁月">
-<meta property="og:description" content="** 应用场景
+<meta property="og:description" content="**应用场景
 1需要通过一个堡垒机跳转到另外一个专用网络的http服务 ，kylin ，在mac上使用ssh client 进行端口转发
-** 命令参考
-1234567$ ssh -L &amp;lt;local port&amp;gt;:&amp;lt;remote host&amp;gt;:&amp;lt;remote port&amp;gt; &amp;lt;SSH hostname&amp;gt;实际命令：$ ssh  -D -N -L 7070:1">
-<meta property="og:updated_time" content="2016-08-08T10:47:10.448Z">
+**命令参考
+1234567$ ssh -L &amp;lt;local port&amp;gt;:&amp;lt;remote host&amp;gt;:&amp;lt;remote port&amp;gt; &amp;lt;SSH hostname&amp;gt;实际命令：$ ssh  -D -N -L 7070:172">
+<meta property="og:updated_time" content="2016-08-08T10:49:00.779Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ssh 端口转发范例">
-<meta name="twitter:description" content="** 应用场景
+<meta name="twitter:description" content="**应用场景
 1需要通过一个堡垒机跳转到另外一个专用网络的http服务 ，kylin ，在mac上使用ssh client 进行端口转发
-** 命令参考
-1234567$ ssh -L &amp;lt;local port&amp;gt;:&amp;lt;remote host&amp;gt;:&amp;lt;remote port&amp;gt; &amp;lt;SSH hostname&amp;gt;实际命令：$ ssh  -D -N -L 7070:1">
+**命令参考
+1234567$ ssh -L &amp;lt;local port&amp;gt;:&amp;lt;remote host&amp;gt;:&amp;lt;remote port&amp;gt; &amp;lt;SSH hostname&amp;gt;实际命令：$ ssh  -D -N -L 7070:172">
   
     <link rel="alternative" href="/atom.xml" title="流光-岁月" type="application/atom+xml">
   
@@ -109,16 +109,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>** 应用场景</p>
+        <p>**应用场景</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">需要通过一个堡垒机跳转到另外一个专用网络的http服务 ，kylin ，在mac上使用ssh client 进行端口转发</div></pre></td></tr></table></figure>
-<p>** 命令参考</p>
+<p>**命令参考</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ ssh -L &lt;local port&gt;:&lt;remote host&gt;:&lt;remote port&gt; &lt;SSH hostname&gt;</div><div class="line"></div><div class="line">实际命令：</div><div class="line"></div><div class="line">$ ssh  -D -N -L 7070:172.10.1.3:7070 root@118.194.240.26 -p 17922</div><div class="line"></div><div class="line">将远程的7070 端口访问转发到本地端口7070 ，通过浏览器访问  http://127.0.0.1:7070/kylin ,就可以直接进行页面操作</div></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://pyxixi2012.github.io/2016/08/08/post/" data-id="cirlwyqls000x9m6r53cqreau" class="article-share-link" data-share="baidu" data-title="ssh 端口转发范例">Share</a>
+        <a data-url="http://pyxixi2012.github.io/2016/08/08/post/" data-id="cirlx14da000zcj6ru9tc6nvf" class="article-share-link" data-share="baidu" data-title="ssh 端口转发范例">Share</a>
       
 
       

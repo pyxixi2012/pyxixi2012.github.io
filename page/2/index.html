@@ -169,7 +169,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://pyxixi2012.github.io/2016/07/22/install_docker_spark/" data-id="cirlwyql9000e9m6rcia1l9l2" class="article-share-link" data-share="baidu" data-title="Install spark 1.6.0 with docker">Share</a>
+        <a data-url="http://pyxixi2012.github.io/2016/07/22/install_docker_spark/" data-id="cirlx14cw000gcj6r2mw5yv0n" class="article-share-link" data-share="baidu" data-title="Install spark 1.6.0 with docker">Share</a>
       
 
       
@@ -240,7 +240,7 @@
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://pyxixi2012.github.io/2016/07/22/kafka-docker-usage/" data-id="cirlwyqll000n9m6r33loxilo" class="article-share-link" data-share="baidu" data-title="kafka with docker 常用命令">Share</a>
+        <a data-url="http://pyxixi2012.github.io/2016/07/22/kafka-docker-usage/" data-id="cirlx14d4000rcj6rbseipcff" class="article-share-link" data-share="baidu" data-title="kafka with docker 常用命令">Share</a>
       
 
       
@@ -607,7 +607,7 @@ ENTRYPOINT [ &quot;flume-ng&quot;, &quot;agent&quot;, &quot;-c&quot;, &quot;/opt
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://pyxixi2012.github.io/2016/07/22/install_flume_kafka_zookeeper_python_docker/" data-id="cirlwyqle000i9m6ruujhuzpv" class="article-share-link" data-share="baidu" data-title="安装flume zookeeper  kafka python 环境 基于docker image">Share</a>
+        <a data-url="http://pyxixi2012.github.io/2016/07/22/install_flume_kafka_zookeeper_python_docker/" data-id="cirlx14cy000hcj6rkmg5odcz" class="article-share-link" data-share="baidu" data-title="安装flume zookeeper  kafka python 环境 基于docker image">Share</a>
       
 
       
@@ -616,6 +616,84 @@ ENTRYPOINT [ &quot;flume-ng&quot;, &quot;agent&quot;, &quot;-c&quot;, &quot;/opt
 
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/flume/">flume</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kafka/">kafka</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/zookeeper/">zookeeper</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-install_kafka_python_docker" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/22/install_kafka_python_docker/" class="article-date">
+  <time datetime="2016-07-22T06:48:00.000Z" itemprop="datePublished">2016-07-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/post/">post</a>►<a class="article-category-link" href="/categories/post/learning/">learning</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/22/install_kafka_python_docker/">build single zookeeper node and 3 kafka broker use wurstmeister/kafka</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="compose-to-run-all-CONTAINER"><a href="#compose-to-run-all-CONTAINER" class="headerlink" title="compose to run all CONTAINER"></a>compose to run all CONTAINER</h2><blockquote>
+<p>edit /etc/hosts add zkserver1 to hosts in all zookeeper node,</p>
+<p>$sudo vi /etc/hosts</p>
+<p>192.168.1.215   zkserver1</p>
+<p>$sudo docker-compose up</p>
+<p>or</p>
+<p>$sudo docker-compose up -d</p>
+</blockquote>
+<h2 id="scale-kafka-node"><a href="#scale-kafka-node" class="headerlink" title="scale kafka node"></a>scale kafka node</h2><blockquote>
+<p>$sudo docker-compose scale kafka=1</p>
+</blockquote>
+<h2 id="add-a-broker-manual"><a href="#add-a-broker-manual" class="headerlink" title="add a broker manual"></a>add a broker manual</h2><blockquote>
+<p>$sudo docker run -d -e KAFKA_BROKER_ID=3 -e KAFKA_ADVERTISED_HOST_NAME=192.168.1.215 -e KAFKA_ZOOKEEPER_CONNECT=192.168.1.215:2181 -p 9092:9092 wurstmeister/kafka:0.8.2.0</p>
+<p>$sudo docker run -e KAFKA_BROKER_ID=3 -e KAFKA_ADVERTISED_HOST_NAME=192.168.1.215 -e KAFKA_ZOOKEEPER_CONNECT=192.168.1.215:2181 -p 9092:9092 wurstmeister/kafka:0.8.2.0</p>
+</blockquote>
+<h2 id="create-a-topic-with-3-replication-and-1-partition"><a href="#create-a-topic-with-3-replication-and-1-partition" class="headerlink" title="create a topic with 3 replication and 1 partition"></a>create a topic with 3 replication and 1 partition</h2><blockquote>
+<p>$bin/kafka-topics.sh –create –zookeeper zkserver1:2181 –replication-factor 3 –partition 1 –topic  zgg.email</p>
+</blockquote>
+<h2 id="to-get-a-list-of-topics"><a href="#to-get-a-list-of-topics" class="headerlink" title="to get a list of topics"></a>to get a list of topics</h2><blockquote>
+<p>$bin/kafka-topics.sh –list –zookeeper zkserver1:2181</p>
+</blockquote>
+<h2 id="view-topic’s-properties"><a href="#view-topic’s-properties" class="headerlink" title="view topic’s properties"></a>view topic’s properties</h2><blockquote>
+<p>$bin/kafka-topics.sh –describe –zookeeper zkserver1:2181 –topic zgg.email</p>
+</blockquote>
+<h2 id="Starting-a-producer-sending-messages"><a href="#Starting-a-producer-sending-messages" class="headerlink" title="Starting a producer - sending messages"></a>Starting a producer - sending messages</h2><blockquote>
+<p>$bin/kafka-console-producer.sh –broker-list zkserver1:11002 zkserver1:11003 zkserver1:11004 –topic zgg.email</p>
+</blockquote>
+<h2 id="Starting-a-consumer-consuming-messages"><a href="#Starting-a-consumer-consuming-messages" class="headerlink" title="Starting a consumer - consuming messages"></a>Starting a consumer - consuming messages</h2><blockquote>
+<p>$bin/kafka-console-consumer.sh –zookeeper zkserver1:2181 –from-beginning –topic zgg.email</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <a data-url="http://pyxixi2012.github.io/2016/07/22/install_kafka_python_docker/" data-id="cirlx14d2000mcj6rth6p7l3d" class="article-share-link" data-share="baidu" data-title="build single zookeeper node and 3 kafka broker use wurstmeister/kafka">Share</a>
+      
+
+      
+        <a href="http://pyxixi2012.github.io/2016/07/22/install_kafka_python_docker/#disqus_thread" class="article-comment-link">Comments</a>
+      
+
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kafka/">kafka</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/zookeeper/">zookeeper</a></li></ul>
 
     </footer>
   </div>
@@ -667,7 +745,7 @@ ENTRYPOINT [ &quot;flume-ng&quot;, &quot;agent&quot;, &quot;-c&quot;, &quot;/opt
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://pyxixi2012.github.io/2016/07/22/kafka-usage/" data-id="cirlwyqlp000s9m6rxzcc65z2" class="article-share-link" data-share="baidu" data-title="kafka常用命令">Share</a>
+        <a data-url="http://pyxixi2012.github.io/2016/07/22/kafka-usage/" data-id="cirlx14d6000scj6rvvzhi3de" class="article-share-link" data-share="baidu" data-title="kafka常用命令">Share</a>
       
 
       
@@ -750,7 +828,7 @@ view page by http://127.0.0.1:4000
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://pyxixi2012.github.io/2016/07/22/install-pyxixi2012-blog/" data-id="cirlwyqlb000h9m6rru3vlkki" class="article-share-link" data-share="baidu" data-title="Create a blog on github">Share</a>
+        <a data-url="http://pyxixi2012.github.io/2016/07/22/install-pyxixi2012-blog/" data-id="cirlx14cu000dcj6rrafxa1k0" class="article-share-link" data-share="baidu" data-title="Create a blog on github">Share</a>
       
 
       
@@ -759,84 +837,6 @@ view page by http://127.0.0.1:4000
 
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-install_kafka_python_docker" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/22/install_kafka_python_docker/" class="article-date">
-  <time datetime="2016-07-22T06:48:00.000Z" itemprop="datePublished">2016-07-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/post/">post</a>►<a class="article-category-link" href="/categories/post/learning/">learning</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/22/install_kafka_python_docker/">build single zookeeper node and 3 kafka broker use wurstmeister/kafka</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="compose-to-run-all-CONTAINER"><a href="#compose-to-run-all-CONTAINER" class="headerlink" title="compose to run all CONTAINER"></a>compose to run all CONTAINER</h2><blockquote>
-<p>edit /etc/hosts add zkserver1 to hosts in all zookeeper node,</p>
-<p>$sudo vi /etc/hosts</p>
-<p>192.168.1.215   zkserver1</p>
-<p>$sudo docker-compose up</p>
-<p>or</p>
-<p>$sudo docker-compose up -d</p>
-</blockquote>
-<h2 id="scale-kafka-node"><a href="#scale-kafka-node" class="headerlink" title="scale kafka node"></a>scale kafka node</h2><blockquote>
-<p>$sudo docker-compose scale kafka=1</p>
-</blockquote>
-<h2 id="add-a-broker-manual"><a href="#add-a-broker-manual" class="headerlink" title="add a broker manual"></a>add a broker manual</h2><blockquote>
-<p>$sudo docker run -d -e KAFKA_BROKER_ID=3 -e KAFKA_ADVERTISED_HOST_NAME=192.168.1.215 -e KAFKA_ZOOKEEPER_CONNECT=192.168.1.215:2181 -p 9092:9092 wurstmeister/kafka:0.8.2.0</p>
-<p>$sudo docker run -e KAFKA_BROKER_ID=3 -e KAFKA_ADVERTISED_HOST_NAME=192.168.1.215 -e KAFKA_ZOOKEEPER_CONNECT=192.168.1.215:2181 -p 9092:9092 wurstmeister/kafka:0.8.2.0</p>
-</blockquote>
-<h2 id="create-a-topic-with-3-replication-and-1-partition"><a href="#create-a-topic-with-3-replication-and-1-partition" class="headerlink" title="create a topic with 3 replication and 1 partition"></a>create a topic with 3 replication and 1 partition</h2><blockquote>
-<p>$bin/kafka-topics.sh –create –zookeeper zkserver1:2181 –replication-factor 3 –partition 1 –topic  zgg.email</p>
-</blockquote>
-<h2 id="to-get-a-list-of-topics"><a href="#to-get-a-list-of-topics" class="headerlink" title="to get a list of topics"></a>to get a list of topics</h2><blockquote>
-<p>$bin/kafka-topics.sh –list –zookeeper zkserver1:2181</p>
-</blockquote>
-<h2 id="view-topic’s-properties"><a href="#view-topic’s-properties" class="headerlink" title="view topic’s properties"></a>view topic’s properties</h2><blockquote>
-<p>$bin/kafka-topics.sh –describe –zookeeper zkserver1:2181 –topic zgg.email</p>
-</blockquote>
-<h2 id="Starting-a-producer-sending-messages"><a href="#Starting-a-producer-sending-messages" class="headerlink" title="Starting a producer - sending messages"></a>Starting a producer - sending messages</h2><blockquote>
-<p>$bin/kafka-console-producer.sh –broker-list zkserver1:11002 zkserver1:11003 zkserver1:11004 –topic zgg.email</p>
-</blockquote>
-<h2 id="Starting-a-consumer-consuming-messages"><a href="#Starting-a-consumer-consuming-messages" class="headerlink" title="Starting a consumer - consuming messages"></a>Starting a consumer - consuming messages</h2><blockquote>
-<p>$bin/kafka-console-consumer.sh –zookeeper zkserver1:2181 –from-beginning –topic zgg.email</p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      
-        <a data-url="http://pyxixi2012.github.io/2016/07/22/install_kafka_python_docker/" data-id="cirlwyqlu00109m6rxqdnr076" class="article-share-link" data-share="baidu" data-title="build single zookeeper node and 3 kafka broker use wurstmeister/kafka">Share</a>
-      
-
-      
-        <a href="http://pyxixi2012.github.io/2016/07/22/install_kafka_python_docker/#disqus_thread" class="article-comment-link">Comments</a>
-      
-
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kafka/">kafka</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/zookeeper/">zookeeper</a></li></ul>
 
     </footer>
   </div>
@@ -915,7 +915,7 @@ view page by http://127.0.0.1:4000
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://pyxixi2012.github.io/2016/07/22/install-flume-with-docker/" data-id="cirlwyql5000d9m6rclf0uwwc" class="article-share-link" data-share="baidu" data-title="安装Flume docker image">Share</a>
+        <a data-url="http://pyxixi2012.github.io/2016/07/22/install-flume-with-docker/" data-id="cirlx14cs000ccj6roew5mc72" class="article-share-link" data-share="baidu" data-title="安装Flume docker image">Share</a>
       
 
       
@@ -997,7 +997,7 @@ view page by http://127.0.0.1:4000
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://pyxixi2012.github.io/2016/07/22/install_flume_kafka_zookeeper_python_docker_desc/" data-id="cirlwyqli000l9m6r74kzu0g7" class="article-share-link" data-share="baidu" data-title="安装flume zookeeper  kafka python 环境 基于docker image 简单描述">Share</a>
+        <a data-url="http://pyxixi2012.github.io/2016/07/22/install_flume_kafka_zookeeper_python_docker_desc/" data-id="cirlx14d1000kcj6ri95qtb5c" class="article-share-link" data-share="baidu" data-title="安装flume zookeeper  kafka python 环境 基于docker image 简单描述">Share</a>
       
 
       
