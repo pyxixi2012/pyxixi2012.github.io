@@ -4,18 +4,24 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Anularjs: first project | 流光-岁月</title>
+  <title>部署flask + uwsgi + nginx 的 说明 | 流光-岁月</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一个情商不高，智商中等，没啥情趣的IT男,我的有点是没啥明显的缺点～～">
+  <meta name="description" content="部署flask + uwsgi + nginx 的 说明&amp;gt; links : https://code-maven.com/deploying-python-flask-using-uwsgi-on-ubuntu-14-04
+准备环境ubuntu
+1234567sudo apt-get updatesudo apt-get install build-essentialsudo apt-get">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Anularjs: first project">
-<meta property="og:url" content="http://pyxixi2012.github.io/2016/07/29/Anularjs-first-project/index.html">
+<meta property="og:title" content="部署flask + uwsgi + nginx 的 说明">
+<meta property="og:url" content="http://pyxixi2012.github.io/2016/11/04/部署flask-uwsgi-nginx-的-说明/index.html">
 <meta property="og:site_name" content="流光-岁月">
-<meta property="og:description" content="一个情商不高，智商中等，没啥情趣的IT男,我的有点是没啥明显的缺点～～">
-<meta property="og:updated_time" content="2016-08-17T07:17:28.187Z">
+<meta property="og:description" content="部署flask + uwsgi + nginx 的 说明&amp;gt; links : https://code-maven.com/deploying-python-flask-using-uwsgi-on-ubuntu-14-04
+准备环境ubuntu
+1234567sudo apt-get updatesudo apt-get install build-essentialsudo apt-get">
+<meta property="og:updated_time" content="2016-11-04T00:39:44.084Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Anularjs: first project">
-<meta name="twitter:description" content="一个情商不高，智商中等，没啥情趣的IT男,我的有点是没啥明显的缺点～～">
+<meta name="twitter:title" content="部署flask + uwsgi + nginx 的 说明">
+<meta name="twitter:description" content="部署flask + uwsgi + nginx 的 说明&amp;gt; links : https://code-maven.com/deploying-python-flask-using-uwsgi-on-ubuntu-14-04
+准备环境ubuntu
+1234567sudo apt-get updatesudo apt-get install build-essentialsudo apt-get">
   
     <link rel="alternative" href="/atom.xml" title="流光-岁月" type="application/atom+xml">
   
@@ -74,14 +80,14 @@
   </div>
 </header>
     <div class="outer">
-      <section id="main"><article id="post-Anularjs-first-project" class="article article-type-post" itemscope itemprop="blogPost">
+      <section id="main"><article id="post-部署flask-uwsgi-nginx-的-说明" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/07/29/Anularjs-first-project/" class="article-date">
-  <time datetime="2016-07-29T11:30:47.000Z" itemprop="datePublished">2016-07-29</time>
+    <a href="/2016/11/04/部署flask-uwsgi-nginx-的-说明/" class="article-date">
+  <time datetime="2016-11-04T00:32:30.000Z" itemprop="datePublished">2016-11-04</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/post/">post</a>►<a class="article-category-link" href="/categories/post/web-development/">web development</a>
+    <a class="article-category-link" href="/categories/post/">post</a>►<a class="article-category-link" href="/categories/post/Develop/">Develop</a>
   </div>
 
   </div>
@@ -92,7 +98,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Anularjs: first project
+      部署flask + uwsgi + nginx 的 说明
     </h1>
   
 
@@ -100,20 +106,54 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="部署flask-uwsgi-nginx-的-说明"><a href="#部署flask-uwsgi-nginx-的-说明" class="headerlink" title="部署flask + uwsgi + nginx 的 说明"></a>部署flask + uwsgi + nginx 的 说明</h1><pre><code>&gt; links : https://code-maven.com/deploying-python-flask-using-uwsgi-on-ubuntu-14-04
+</code></pre><h2 id="准备环境"><a href="#准备环境" class="headerlink" title="准备环境"></a>准备环境</h2><p>ubuntu</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install build-essential</div><div class="line">sudo apt-get install python-dev</div><div class="line">sudo apt-get install python-pip</div><div class="line">sudo apt-get install nginx</div><div class="line">sudo apt-get install uwsgi</div><div class="line">sudo apt-get install uwsgi-plugin-python</div></pre></td></tr></table></figure>
+<p>centos</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">sudo yum update</div><div class="line">sudo yum install build-essential</div><div class="line">sudo yum install python-dev</div><div class="line">sudo yum install python-pip</div><div class="line">sudo yum install nginx</div><div class="line">sudo yum install uwsgi</div><div class="line">sudo yum install uwsgi-plugin-python</div></pre></td></tr></table></figure>
+<h2 id="准备-falsk-project"><a href="#准备-falsk-project" class="headerlink" title="准备 falsk project"></a>准备 falsk project</h2><h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">├── log</div><div class="line">├── media</div><div class="line">│   ├── css</div><div class="line">│   ├── font-awesome-4.1.0</div><div class="line">│   ├── fonts</div><div class="line">│   ├── icons</div><div class="line">│   ├── js-1</div><div class="line">├── portal_config.xml</div><div class="line">├── portal-uwsgi.ini</div><div class="line">├── server.py</div><div class="line">├── fun.py</div><div class="line">├── utility.py</div><div class="line">├── start.sh</div><div class="line">├── stopserver.sh</div><div class="line">├── sync_py.sh</div><div class="line">├── celeryconfig.py</div><div class="line">├── dependencies.txt</div><div class="line">├── INSTALL.txt</div></pre></td></tr></table></figure>
+</code></pre><h3 id="projcet-配置说明"><a href="#projcet-配置说明" class="headerlink" title="projcet 配置说明"></a>projcet 配置说明</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">uwsgi  ，使用application 作为应用入口</div><div class="line">application = app</div></pre></td></tr></table></figure>
+<h2 id="配置uwsgi"><a href="#配置uwsgi" class="headerlink" title="配置uwsgi"></a>配置uwsgi</h2><ul>
+<li>install uwsgi<br>  $ sudo pip install uwsgi uwsgi-plugin-python<br>  $ uwsgi –version<pre><code>2.0.13.1
+</code></pre></li>
+<li><p>uwsgi config file, vi portal-uwsgi.ini</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">[uwsgi]</div><div class="line">module = server</div><div class="line">callable = app</div><div class="line">master = true</div><div class="line">socket = /tmp/uwsgi.sock</div><div class="line">chmod-socket = 666</div><div class="line">http-socket  = :9090</div><div class="line">vacuum = true</div><div class="line">die-on-term = true</div><div class="line">plugin    = python</div><div class="line">wsgi-file = /home/weihu/web-dev/portal-uwsgi/server.py</div><div class="line">processes   = 1</div><div class="line">threads = 10</div><div class="line">uid = weihu</div><div class="line">gid = weihu</div><div class="line">protocol = uwsgi</div><div class="line">harakiri = 120</div></pre></td></tr></table></figure>
+</li>
+<li><p>run project with uwsgi<br>  $ uwsgi –ini project-uwsgi.ini</p>
+</li>
+<li><p>tips :<br>  Address already in use</p>
+<blockquote>
+<p>sudo rm /tmp/uwsgi.sock</p>
+</blockquote>
+</li>
+<li><p>start project as service</p>
+<p>  create a symbolic link so uWSGI will start our server automatically when the server boots up:</p>
+<p>  $ sudo ln -s /home/weihu/web-dev/portal-uwsgi/my-uwsgi.ini /etc/uwsgi/apps-enabled/</p>
+<p>  $ sudo service uwsgi start</p>
+</li>
+</ul>
+<h2 id="Add-Nginx-to-the-mix"><a href="#Add-Nginx-to-the-mix" class="headerlink" title="Add Nginx to the mix"></a>Add Nginx to the mix</h2><h3 id="install-nginx"><a href="#install-nginx" class="headerlink" title="install nginx"></a>install nginx</h3><p>Install Nginx and remove the default configuration file:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># aptitude install nginx</div><div class="line"># service nginx start</div><div class="line"># rm /etc/nginx/sites-enabled/default</div></pre></td></tr></table></figure>
+<p>Instead of that create a new configuration file in /home/dev/project/my-nginx.conf with the following content:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">server &#123;</div><div class="line">  location / &#123;</div><div class="line">    include uwsgi_params;</div><div class="line">    uwsgi_pass 127.0.0.1:9090;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Create a symbolic link in the directory of Nginx so when Nginx starts this configuration file is taken in account.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"># ln -s /home/dev/project/my-nginx.conf /etc/nginx/sites-enabled/</div><div class="line"># service nginx restart</div></pre></td></tr></table></figure>
+<p>Now you can visit <a href="http://1.2.3.4/" target="_blank" rel="external">http://1.2.3.4/</a> and see 502 Bad Gateway. What a bummer.</p>
+<h3 id="502-Bad-Gateway"><a href="#502-Bad-Gateway" class="headerlink" title="502 Bad Gateway"></a>502 Bad Gateway</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">Looking at the error log of Nginx in /var/log/nginx/error.log I see the following:</div><div class="line"></div><div class="line">upstream prematurely closed connection while reading response header from upstream, client: 192.117.127.193, server: ,</div><div class="line">request: &quot;GET / HTTP/1.1&quot;, upstream: &quot;uwsgi://127.0.0.1:9090&quot;, host: &quot;159.203.101.19&quot;</div><div class="line"></div><div class="line">Apparently what was missing was that I had to replace http-socket by socket in my-uwsgi.ini file. I did that and restarted uWSGI using</div><div class="line"></div><div class="line"># service uwsgi restart</div><div class="line"></div><div class="line">The application started to work!</div><div class="line"></div><div class="line">Troubleshooting</div><div class="line"></div><div class="line">There are two places to look for error messages: /var/log/nginx/error.log is the error log of Nginx and /var/log/uwsgi/app/my-uwsgi.log where the log of uWSGI can be found. Assuming you called the config file my-uswgi.ini.</div><div class="line"></div><div class="line">For other options you might want to check out the Deploying Flask on uWSGI in the documentation.</div></pre></td></tr></table></figure>
+
       
     </div>
     <footer class="article-footer">
       
-        <a data-url="http://pyxixi2012.github.io/2016/07/29/Anularjs-first-project/" data-id="civ35nd02000whfedabfjvuvx" class="article-share-link" data-share="baidu" data-title="Anularjs: first project">Share</a>
+        <a data-url="http://pyxixi2012.github.io/2016/11/04/部署flask-uwsgi-nginx-的-说明/" data-id="civ35nd060014hfedpw5z8lpa" class="article-share-link" data-share="baidu" data-title="部署flask + uwsgi + nginx 的 说明">Share</a>
       
 
       
-        <a href="http://pyxixi2012.github.io/2016/07/29/Anularjs-first-project/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://pyxixi2012.github.io/2016/11/04/部署flask-uwsgi-nginx-的-说明/#disqus_thread" class="article-comment-link">Comments</a>
       
 
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angularjs/">angularjs</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/REST-API/">REST API</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
 
     </footer>
   </div>
@@ -121,19 +161,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2016/07/30/Faqs-perl-local-error-on-ubuntu-16/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Faqs: perl local error on ubuntu 16
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/07/27/Setting up ElasticSearch with MongoDB/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/11/02/HTTP Authentication in Python/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Setting up ElasticSearch with MongoDB</div>
+      <div class="article-nav-title">HTTP Authentication in Python with pycurl ,urllib2 , requests</div>
     </a>
   
 </nav>
@@ -297,7 +328,7 @@
 <script>
   var disqus_shortname = 'pyxixi2012';
   
-  var disqus_url = 'http://pyxixi2012.github.io/2016/07/29/Anularjs-first-project/';
+  var disqus_url = 'http://pyxixi2012.github.io/2016/11/04/部署flask-uwsgi-nginx-的-说明/';
   
   (function(){
     var dsq = document.createElement('script');

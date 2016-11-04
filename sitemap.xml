@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://pyxixi2012.github.io/2016/11/04/%E9%83%A8%E7%BD%B2flask-uwsgi-nginx-%E7%9A%84-%E8%AF%B4%E6%98%8E/</loc>
+    
+    <lastmod>2016-11-04T00:39:44.084Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://pyxixi2012.github.io/2016/11/02/HTTP%20Authentication%20in%20Python/</loc>
     
     <lastmod>2016-11-02T03:02:12.708Z</lastmod>
@@ -44,7 +51,21 @@
   </url>
   
   <url>
+    <loc>http://pyxixi2012.github.io/2016/07/30/make-angularjs-project-struct/</loc>
+    
+    <lastmod>2016-08-17T07:17:28.187Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://pyxixi2012.github.io/2016/07/30/Faqs-perl-local-error-on-ubuntu-16/</loc>
+    
+    <lastmod>2016-08-17T07:17:28.187Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://pyxixi2012.github.io/2016/07/29/Anularjs-first-project/</loc>
     
     <lastmod>2016-08-17T07:17:28.187Z</lastmod>
     
@@ -65,42 +86,7 @@
   </url>
   
   <url>
-    <loc>http://pyxixi2012.github.io/2016/07/30/make-angularjs-project-struct/</loc>
-    
-    <lastmod>2016-08-17T07:17:28.187Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://pyxixi2012.github.io/2016/07/29/Anularjs-first-project/</loc>
-    
-    <lastmod>2016-08-17T07:17:28.187Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://pyxixi2012.github.io/2016/07/22/kafka-docker-usage/</loc>
-    
-    <lastmod>2016-08-17T07:17:28.186Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://pyxixi2012.github.io/2016/07/22/install_docker_spark/</loc>
-    
-    <lastmod>2016-08-17T07:17:28.186Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://pyxixi2012.github.io/2016/07/23/%E5%AD%A6%E4%B9%A0Hexo%EF%BC%8C%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAgit-pages%E7%9A%84%E5%8D%9A%E5%AE%A2/</loc>
-    
-    <lastmod>2016-08-17T07:17:28.186Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://pyxixi2012.github.io/2016/07/27/Setting%20up%20ElasticSearch%20with%20MongoDB/</loc>
     
     <lastmod>2016-08-17T07:17:28.186Z</lastmod>
     
@@ -121,14 +107,28 @@
   </url>
   
   <url>
-    <loc>http://pyxixi2012.github.io/2016/07/22/kafka-usage/</loc>
+    <loc>http://pyxixi2012.github.io/2016/07/23/%E5%AD%A6%E4%B9%A0Hexo%EF%BC%8C%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAgit-pages%E7%9A%84%E5%8D%9A%E5%AE%A2/</loc>
     
-    <lastmod>2016-08-17T07:17:28.185Z</lastmod>
+    <lastmod>2016-08-17T07:17:28.186Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://pyxixi2012.github.io/2016/07/22/install_flume_kafka_zookeeper_python_docker_desc/</loc>
+    <loc>http://pyxixi2012.github.io/2016/07/27/Setting%20up%20ElasticSearch%20with%20MongoDB/</loc>
+    
+    <lastmod>2016-08-17T07:17:28.186Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://pyxixi2012.github.io/2016/07/22/install_docker_spark/</loc>
+    
+    <lastmod>2016-08-17T07:17:28.186Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://pyxixi2012.github.io/2016/07/22/install-pyxixi2012-blog/</loc>
     
     <lastmod>2016-08-17T07:17:28.185Z</lastmod>
     
@@ -142,7 +142,7 @@
   </url>
   
   <url>
-    <loc>http://pyxixi2012.github.io/2016/07/22/install-pyxixi2012-blog/</loc>
+    <loc>http://pyxixi2012.github.io/2016/07/22/kafka-usage/</loc>
     
     <lastmod>2016-08-17T07:17:28.185Z</lastmod>
     
@@ -150,6 +150,13 @@
   
   <url>
     <loc>http://pyxixi2012.github.io/2016/07/22/install_flume_kafka_zookeeper_python_docker/</loc>
+    
+    <lastmod>2016-08-17T07:17:28.185Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://pyxixi2012.github.io/2016/07/22/install_flume_kafka_zookeeper_python_docker_desc/</loc>
     
     <lastmod>2016-08-17T07:17:28.185Z</lastmod>
     

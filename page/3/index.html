@@ -4,12 +4,12 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2016 | 流光-岁月</title>
+  <title>流光-岁月</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="一个情商不高，智商中等，没啥情趣的IT男,我的有点是没啥明显的缺点～～">
 <meta property="og:type" content="website">
 <meta property="og:title" content="流光-岁月">
-<meta property="og:url" content="http://pyxixi2012.github.io/archives/2016/index.html">
+<meta property="og:url" content="http://pyxixi2012.github.io/page/3/index.html">
 <meta property="og:site_name" content="流光-岁月">
 <meta property="og:description" content="一个情商不高，智商中等，没啥情趣的IT男,我的有点是没啥明显的缺点～～">
 <meta name="twitter:card" content="summary">
@@ -75,207 +75,88 @@
     <div class="outer">
       <section id="main">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/11/04/部署flask-uwsgi-nginx-的-说明/" class="archive-article-date">
-  <time datetime="2016-11-04T00:32:30.000Z" itemprop="datePublished">11月 4</time>
+    <article id="post-install_kafka_python_docker" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/22/install_kafka_python_docker/" class="article-date">
+  <time datetime="2016-07-22T06:48:00.000Z" itemprop="datePublished">2016-07-22</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/post/">post</a>►<a class="article-category-link" href="/categories/post/learning/">learning</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/11/04/部署flask-uwsgi-nginx-的-说明/">部署flask + uwsgi + nginx 的 说明</a>
+      <a class="article-title" href="/2016/07/22/install_kafka_python_docker/">build single zookeeper node and 3 kafka broker use wurstmeister/kafka</a>
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/11/02/HTTP Authentication in Python/" class="archive-article-date">
-  <time datetime="2016-11-02T00:36:40.000Z" itemprop="datePublished">11月 2</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/11/02/HTTP Authentication in Python/">HTTP Authentication in Python with pycurl ,urllib2 , requests</a>
-    </h1>
-  
+        <h2 id="compose-to-run-all-CONTAINER"><a href="#compose-to-run-all-CONTAINER" class="headerlink" title="compose to run all CONTAINER"></a>compose to run all CONTAINER</h2><blockquote>
+<p>edit /etc/hosts add zkserver1 to hosts in all zookeeper node,</p>
+<p>$sudo vi /etc/hosts</p>
+<p>192.168.1.215   zkserver1</p>
+<p>$sudo docker-compose up</p>
+<p>or</p>
+<p>$sudo docker-compose up -d</p>
+</blockquote>
+<h2 id="scale-kafka-node"><a href="#scale-kafka-node" class="headerlink" title="scale kafka node"></a>scale kafka node</h2><blockquote>
+<p>$sudo docker-compose scale kafka=1</p>
+</blockquote>
+<h2 id="add-a-broker-manual"><a href="#add-a-broker-manual" class="headerlink" title="add a broker manual"></a>add a broker manual</h2><blockquote>
+<p>$sudo docker run -d -e KAFKA_BROKER_ID=3 -e KAFKA_ADVERTISED_HOST_NAME=192.168.1.215 -e KAFKA_ZOOKEEPER_CONNECT=192.168.1.215:2181 -p 9092:9092 wurstmeister/kafka:0.8.2.0</p>
+<p>$sudo docker run -e KAFKA_BROKER_ID=3 -e KAFKA_ADVERTISED_HOST_NAME=192.168.1.215 -e KAFKA_ZOOKEEPER_CONNECT=192.168.1.215:2181 -p 9092:9092 wurstmeister/kafka:0.8.2.0</p>
+</blockquote>
+<h2 id="create-a-topic-with-3-replication-and-1-partition"><a href="#create-a-topic-with-3-replication-and-1-partition" class="headerlink" title="create a topic with 3 replication and 1 partition"></a>create a topic with 3 replication and 1 partition</h2><blockquote>
+<p>$bin/kafka-topics.sh –create –zookeeper zkserver1:2181 –replication-factor 3 –partition 1 –topic  zgg.email</p>
+</blockquote>
+<h2 id="to-get-a-list-of-topics"><a href="#to-get-a-list-of-topics" class="headerlink" title="to get a list of topics"></a>to get a list of topics</h2><blockquote>
+<p>$bin/kafka-topics.sh –list –zookeeper zkserver1:2181</p>
+</blockquote>
+<h2 id="view-topic’s-properties"><a href="#view-topic’s-properties" class="headerlink" title="view topic’s properties"></a>view topic’s properties</h2><blockquote>
+<p>$bin/kafka-topics.sh –describe –zookeeper zkserver1:2181 –topic zgg.email</p>
+</blockquote>
+<h2 id="Starting-a-producer-sending-messages"><a href="#Starting-a-producer-sending-messages" class="headerlink" title="Starting a producer - sending messages"></a>Starting a producer - sending messages</h2><blockquote>
+<p>$bin/kafka-console-producer.sh –broker-list zkserver1:11002 zkserver1:11003 zkserver1:11004 –topic zgg.email</p>
+</blockquote>
+<h2 id="Starting-a-consumer-consuming-messages"><a href="#Starting-a-consumer-consuming-messages" class="headerlink" title="Starting a consumer - consuming messages"></a>Starting a consumer - consuming messages</h2><blockquote>
+<p>$bin/kafka-console-consumer.sh –zookeeper zkserver1:2181 –from-beginning –topic zgg.email</p>
+</blockquote>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/08/26/spark-develop-with-idea15/" class="archive-article-date">
-  <time datetime="2016-08-26T07:40:48.000Z" itemprop="datePublished">8月 26</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/08/26/spark-develop-with-idea15/">Develop spark app with Intellij IDEA 15 Config</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/08/08/post/" class="archive-article-date">
-  <time datetime="2016-08-08T10:37:56.000Z" itemprop="datePublished">8月 8</time>
-</a>
+    </div>
+    <footer class="article-footer">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/08/08/post/">ssh 端口转发范例</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/08/02/use-Yeoman-make-a-webapp-part-2/" class="archive-article-date">
-  <time datetime="2016-08-02T12:27:01.000Z" itemprop="datePublished">8月 2</time>
-</a>
+        <a data-url="http://pyxixi2012.github.io/2016/07/22/install_kafka_python_docker/" data-id="civ35nczs000mhfedq1crfkyi" class="article-share-link" data-share="baidu" data-title="build single zookeeper node and 3 kafka broker use wurstmeister/kafka">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/08/02/use-Yeoman-make-a-webapp-part-2/">use Yeoman make a webapp part 2</a>
-    </h1>
-  
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/07/30/make-angularjs-project-struct/" class="archive-article-date">
-  <time datetime="2016-07-30T10:32:48.000Z" itemprop="datePublished">7月 30</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/07/30/make-angularjs-project-struct/">make angularjs project struct</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/07/30/Faqs-perl-local-error-on-ubuntu-16/" class="archive-article-date">
-  <time datetime="2016-07-30T04:30:36.000Z" itemprop="datePublished">7月 30</time>
-</a>
+        <a href="http://pyxixi2012.github.io/2016/07/22/install_kafka_python_docker/#disqus_thread" class="article-comment-link">Comments</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/07/30/Faqs-perl-local-error-on-ubuntu-16/">Faqs: perl local error on ubuntu 16</a>
-    </h1>
-  
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/07/29/Anularjs-first-project/" class="archive-article-date">
-  <time datetime="2016-07-29T11:30:47.000Z" itemprop="datePublished">7月 29</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/07/29/Anularjs-first-project/">Anularjs: first project</a>
-    </h1>
-  
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kafka/">kafka</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/zookeeper/">zookeeper</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/07/27/Setting up ElasticSearch with MongoDB/" class="archive-article-date">
-  <time datetime="2016-07-27T08:10:11.000Z" itemprop="datePublished">7月 27</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/07/27/Setting up ElasticSearch with MongoDB/">Setting up ElasticSearch with MongoDB</a>
-    </h1>
-  
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/07/27/JavaScript-Development-Environment/" class="archive-article-date">
-  <time datetime="2016-07-27T05:09:17.000Z" itemprop="datePublished">7月 27</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/07/27/JavaScript-Development-Environment/">JavaScript Development Environment</a>
-    </h1>
-  
 
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    </nav>
   
 </section>
       
